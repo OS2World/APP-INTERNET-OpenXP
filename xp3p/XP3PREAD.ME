@@ -1,0 +1,507 @@
+{ $Id: XP3PREAD.ME,v 1.2 2001/07/14 12:07:46 oh Exp $ }
+
+
+
+                Kurzdoku zu XP-PPP, kurz: XP3P
+                oder: wer liest schon lange Dokus? ;)
+
+
+
+  1. Was ist XP3P?
+
+     XP3P ist ein Client fr CrossPoint (XP2, http://www.xp2.de/), der es
+     erm”glicht, mit XP auf einfache Art und Weise an den Internet-Diensten
+     Mail und News teilzunehmen. Einfach heisst: ohne externe Konfiguration,
+     alle Einstellungen werden innerhalb XP vorgenommen. Ferner ist ein
+     Scorefilter eingebaut, der es erm”glicht, Nachrichten aufgrund von
+     bestimmten Kriterien erst gar nicht vom Newsserver zu laden.
+
+
+  2. Dateien
+
+     Folgende Dateien beifinden sich im XP3P-Paket:
+
+     XP3P-OS2.EXE OS/2-Version des Clients.
+     XP3P-W32.EXE Win32-Version des Clients fr Windows 9x und NT
+     STOPXP3P.EXE Utility fr OS/2, um im Fehlerfall den Stub zu beenden.
+     UUZ.EXE      ZConnect-nach-RFC Konvertierer aus dem CrossPoint-
+                  Paket - bitte Lizenzbestimmungen beachten
+     XP3PREAD.ME  Diese Datei :-)
+     SCORE.SC     Beispiel-Scorefile
+     CHANGES.TXT  Versionsgeschichte
+     FILE_ID.DIZ  Paketbeschreibung
+
+     XP3P kann sowohl unter OS/2 als auch unter Windows problemlos mit der
+     DOS-Version vom XP benutzt werden. Es sind keine Batchfiles oder
+     sonstige Klimmzge notwendig. Die OS/2-Version hat einen entsprechenden
+     Stub, der XP w„hrend des Netcalls blockiert. Unter Windows startet XP3P
+     sowieso im selben Fenster wie XP selbst, dadurch wartet XP automatisch
+     auf die Beendigung von XP3P.
+
+     Falls XP3P unter OS/2 abstrzt und in XP immer noch die Meldung 'warte
+     auf Rckkehr ...' erscheint, kann man mit STOPXP3P.EXE den warte-Stub
+     beenden.
+
+     Achtung!
+     Wenn XP3P unter OS/2 aus einem DOS-Fenster heraus gestartet wird, darf
+     es nicht mehrfach gestartet werden, da sonst das erste sich beendende
+     XP3P allen Stubs das Kommando gibt, sich zu beenden!
+
+
+  3. Installation
+
+     Die Installation ist denkbar einfach: einfach die zum Betriebssystem
+     passende XP3P-EXE-Datei und UUZ.EXE ins XP-Verzeichnis kopieren. Wer
+     m”chte, kann XP3P-*.EXE nach XP3P.EXE umbenennen.
+
+
+  4. Konfiguration
+
+     Die Konfiguration von XP3P geschieht ausschliesslich in XP unter Edit/
+     Boxen. Der Boxtyp ist RFC/PPP. Die fr den XP3P relevanten
+     Einstellungen im Einzelnen:
+
+     Namen:
+
+       Die Erkl„rungen hierzu entnehmen Sie bitte der Onlinehilfe oder der
+       Dokumentation von XP.
+
+     Zugang:
+
+       Dieser Punkt ist fr XP3P irrelevant. Lediglich die Option 'Pakete
+       mitsenden' kann bei mehreren Providern Bedeutung erlangen. Die
+       Erkl„rungen hierzu entnehmen Sie bitte der Onlinehilfe oder der
+       Dokumentation von XP.
+
+     Clients:
+
+       Anwahl und Abwahl:
+
+         Diese Einstellungen sind fr XP3P irrelevant, die Felder sollten
+         leer bleiben. Die An- und Abwahl erfolgt bei OS/2 ber den OS/2-
+         Dialer ('Andere Internet- Servicegeber') oder ein Drittprodukt (z.
+         B. InJoy), bei Windows ber das DFš-Netzwerk. Ist der Rechner ber
+         ein LAN direkt mit dem Internet oder einem Intranet verbunden,
+         entf„llt An- und Abwahl vollst„ndig.
+
+       Mail:
+
+         Hier wird der Aufruf von XP3P konfiguriert. Mit der Taste F2
+         erhalten sie eine Voreinstellung zur Auswahl.
+
+         Empfohlene Einstellung: XP3P -CONFIG:$CONFIG -SMTP
+
+         Weitere Parameter siehe Abschnitt 5.
+
+       News:
+
+         Dieser Eintrag bleibt leer, da XP3P den Versand und Empfang von
+         Mail und News in einem Programm vereint.
+
+       UUZ-In und UUZ-Out:
+
+         Diese Eintr„ge dienen dazu, um den ZConnect-nach-RFC Konvertierer
+         UUZ konfigurierbar zu machen. Bei XP3P k”nnen diese Felder leer
+         bleiben; XP verwendet in dem Fall sinnvolle Defaulteinstellungen.
+
+       UUZ-Spool:
+
+         Das Spoolverzeichnis fr die Verwendung mit der RFC/PPP-Box. Es
+         sollte das Standard-Spoolverzeichnis von XP eingestellt sein.
+
+     POP3/IMAP:
+
+       Server:      Adresse des POP3-Servers
+       User:        Benutzerkennung fr den POP3-Server
+       Passwort:    Passwort fr den POP3-Server
+       Envelope:    eigene E-Mail Adresse
+       Envelope-To: enabled oder disabled; Empf„nger aus Envelope-To-
+                    Header auslesen
+       Mail halten: enabled oder disabled; Mail nach Abruf auf dem
+                    Server halten oder l”schen?
+       Spool:       Defaulteinstellung: XP-Standard-Spoolverzeichnis
+       Port:        Port des POP3-Servers (default: 110)
+       Timeout:     Timeout, wird derzeit von XP3P nicht ausgewertet
+
+       IMAP-Protokoll verwenden: wird derzeit von XP3P nicht untersttzt
+
+     SMTP:
+
+       Server:      Adresse des SMTP-Servers
+       User:        Benutzerkennung fr den SMTP-Server,
+                    wird derzeit von XP3P nicht untersttzt
+       Passwort:    Passwort fr den SMTP-Server,
+                    wird derzeit von XP3P nicht untersttzt
+       Envelope:    eigene E-Mail Adresse
+       Spool:       Defaulteinstellung: XP-Standard-Spoolverzeichnis
+       Port:        Port des SMTP-Servers (default: 25)
+       Timeout:     Timeout, wird derzeit von XP3P nicht ausgewertet
+
+       Vorherige Pop3 Authentifizierung:
+
+         enabled oder disabled; fr manche Maildienste wie GMX n”tig
+
+     NNTP:
+
+       Server:      Adresse des Newsservers
+       User:        Benutzerkennung fr den Newsserver (wenn n”tig)
+       Passwort:    Passwort fr den Newsserver (wenn n”tig)
+       Spool:       Defaulteinstellung: XP-Standard-Spoolverzeichnis
+       Port:        Port des Newsservers (default: 119)
+       Timeout:     Timeout, wird derzeit von XP3P nicht ausgewertet
+
+       Newsliste anfordern/aktualisieren:
+
+         enabled oder disabled; zum Anfordern bzw. aktualisieren der
+         Newsgroupliste. Ist diese Einstellung aktiviert, wird bei jedem
+         Netcall die Newsgroupliste aktualisiert, wenn sie fehlt, wird sie
+         komplett angefordert.
+
+       alle Artikelzeiger aktualisieren:
+
+         enabled oder disabled; sollte nach dem Wechsel des Newsservers
+         _einmalig_ aktiviert werden
+
+       Artikel ber diese Box posten:
+
+         Diese Einstellung ist fr XP3P irrelevant.
+
+       Artikel gleichzeitig anfordern:
+
+         wird derzeit von XP3P nicht untersttzt
+
+       Artikel-Anzahl fr Neubestellungen:
+
+         Anzahl der Artikel, die bei Neubestellung einer Newsgroup
+         angefordert werden.
+
+       maximale L„nge eines Artikels:
+
+         wird derzeit von XP3P nicht untersttzt
+
+       maximale Artikel pro Newsgroup:
+
+         Maximale Anzahl der Artikel, die pro Newsgroup und Netcall
+         heruntergeladen werden.
+
+       Gr”áe der Dupebase:
+
+         XP3P 'merkt' sich die Message-IDs der versendeten und bereits
+         heruntergeladenen Artikel in einer Datei. Dadurch werden eigene
+         Postings nicht mehr sowie Cropsspostings nur einmal
+         heruntergeladen. šberschreitet die Dateigr”áe den angegebenen Wert,
+         werden die „ltesten Eintr„ge entfernt.
+
+     Diverses:
+
+       Die Erkl„rungen hierzu entnehmen Sie bitte der Onlinehilfe oder der
+       Dokumentation von XP.
+
+       Der Scorefilter ist in XP3P derzeit nicht implementiert.
+
+     SysopMode
+
+       Die Erkl„rungen hierzu entnehmen Sie bitte der Onlinehilfe oder der
+       Dokumentation von XP.
+
+
+  5. Parameter
+
+       -config:<file>
+
+         Mit diesem Parameter wird die Boxkonfig-Datei bergeben
+         (*.BFG).
+
+       -h
+
+         Hilfe anzeigen.
+
+       -v
+
+         Verbose Mode. XP3P startet nicht mit Oberfl„che, sondern im
+         zeilenorientierten Modus. Hilfreich bei der Fehlersuche.
+
+       -smtp
+
+         XP3P erzeugt bei eingehenden Mail SMTP-Batches (empfohlen).
+
+       -debugX
+
+         Debug-Mode. Fr X kann 1 oder 2 eingesetzt werden. Damit wird ein
+         Logfile (im XP-Logverzeichnis) mit dem Namen <boxkonfig>.LOG
+         angelegt, das je nach Level (1 oder 2) weniger ausfhrliche oder
+         ausfhrlichere Loginfos enth„lt. Verschiedene Loginfos werden auch
+         in den Netzanrufbericht geschrieben.
+
+
+  6. Das Scorefile
+
+     Zuerst m”chte ich kurz auf die Frage eingehen, was Scoring berhaupt
+     ist.
+
+     Als Scoring bezeichnet man das bewerten von Artikeln, indem man
+     Filterregeln (Muster) auf die Headerzeilen anwendet und bei
+     šbereinstimmung eine bestimmte Punkteanzahl, den sogenannten 'Score',
+     vergibt. Passt kein Muster auf den Artikel, wird der Score 0 vergeben.
+     Passen mehrere Muster, werden die Scores addiert. Anhand des Scores
+     kann man nun entscheiden, ob man den Artikel herunterladen will oder
+     nicht. Scoring ist sehr flexibel, da mehrere Regeln auf einfache Weise
+     verknpft und verschieden gewichtet werden k”nnen.
+
+     Dem XP3?-Paket liegt eine Beispielscoredatei SCORE.SC bei.
+
+
+     Zun„chst soll der Aufbau der Datei erkl„rt werden.
+
+     Kommentare beginnen mit einem Semikolon ';' oder einem 'Gartenzaun' '#'
+     am Zeilenanfang.
+
+     Am Anfang der Datei werden die Aktionen definiert. Jede Zeile besteht
+     dabei aus folgenden Elementen:
+
+     <von Score> <bis Score> <Aktion>
+
+     <von Score> und <bis Score> bezeichnen den Bereich, fr den die Aktion
+     gelten soll, einschlieálich der beiden Werte. Soll die Aktion nur bei
+     einem bestimmten Score durchgefhrt werden, gibt man beide Male den
+     gleichen Wert an. Gltige Werte sind von -2147483648 bis 2147483647.
+     <von Score> muá kleiner oder gleich <bis Score> sein. Die Bereiche von
+     mehreren Eintr„gen k”nnen sich auch berlappen, jedoch muá man sich
+     genau berlegen, welche Folgen das nach sich zieht.
+
+     Mit <Aktion> wird angegeben, was mit den Artikeln passieren soll; dabei
+     spielt Groá-/Kleinschreibung keine Rolle.
+
+     SKIP
+
+       L„dt den Artikel nicht herunter, berspringt ihn also.
+
+     HDRONLY
+
+       Es wird nur der Header des Artikel heruntergeladen.
+
+
+     Nach den Aktionen werden die Regeln (Muster) definiert. Dabei habe ich
+     mich sehr nah an slrn orientiert. Groá-/Kleinschreibung wird nicht
+     unterschieden, einzige Ausnahme: es wird fr den Suchbegriff
+     ausdrcklich eine casesensitive Suche eingestellt.
+
+     Bei den Newsgroups und den Suchbegriffen sind Wildcards erlaubt, dabei
+     steht ein Stern '*' fr eine beliebige Anzahl (also null bis
+     [theoretisch] unendlich) von beliebigen Zeichen, ein Fragezeichen '?'
+     fr genau ein beliebiges Zeichen.
+
+     Regul„re Ausdrcke (regular expressions) stehen _nicht_ zur Verfgung.
+
+     Zun„chst mssen die Newsgroups ausgew„hlt werden, deren Artikel
+     bewertet werden sollen. Das geschieht, indem man eine oder mehrere
+     Newsgroups in eckigen Klammern '[' und ']' anfhrt. Mehrere Newsgroups
+     werden duch Kommas getrennt. Es empfiehlt sich, die Newsgroups in
+     Sternchen zu setzen (*de.comm.software.crosspoint*), um auch
+     Crosspostings mit dem Filter zu erwischen. Die Auswahl der Newsgroups
+     gilt fr alle folgenden Eintr„ge, bis eine neue Auswahl von Newsgroups
+     erfolgt, wodurch der vorige Abschnitt abgeschlossen wird. Man kann die
+     Newsgroupauswahl auch umkehren, das geschieht mit einem Ausrufezeichen
+     '!' hinter der ersten eckigen Klammer '[' und vor der ersten Newsgroup.
+     Die Umkehr gilt fr alle zwischen '[' und ']' angegebenen Newsgroups!
+     Eine Umkehr der Newsgroupauswahl bedeutet, daá alle Newsgroups auáer
+     den angegebenen gescored werden.
+
+     Beispiel:
+
+     [*de.newsgroup*, *nochnenewsgroup*, *de.alt.*]
+
+     Als n„chstes kommt der Score (die Bewertung). Es kommt das
+     Schlsselwort SCORE und dahinter der eigentliche Score. Wenn man vor
+     den Score ein '=' (SCORE =-100) setzt, wird der Score nicht addiert,
+     sondern der Wert hinter '=' eingesetzt und die Suche abgebrochen, wenn
+     der Filterbegriff paát. Vor SCORE kann man noch AND (=UND-Verknpfung)
+     oder OR (=ODER-Verknpfung) setzen, damit gibt man an, wie die
+     nachfolgenden Filterregeln miteinander verknpft werden. AND ist die
+     Grundeinstellung und wird verwendet, wenn nichts angegeben wird. Der
+     Score wird in einem long signed integer mit 32 Bit gespeichert, darf
+     also von -2147483648 bis 2147483647 gehen. Ich denke, dieser Bereich
+     sollte reichen; ein šberlauf wird nicht abgefangen. Hinter dem Score
+     kann noch die Dauer der Gltigkeit angegeben werden. Das geschieht
+     durch das Schlsselwort EXPIRES und einem Datum. Das Datum kann in
+     deutscher Schreibweise (TT.MM.JJJJ) oder in in der Schreibweise
+     JJJJ-MM-TT angegeben werden. JJJJ steht fr das Jahr; dieses muá
+     vollst„ndig angegeben werden (also 2001 und nicht 01). MM steht fr den
+     Monat und TT fr den Tag. Der Filter akzeptiert Jahre von 1700 bis
+     9999, ist also nicht nur Jahr-2000-fest, sondern auch Jahr-9999-fest.
+     Auch das sollte reichen. :-) EXPIRES muá, sofern es angegeben wird, in
+     der selben Zeile stehen wie SCORE. Die Definition der Filterregeln fr
+     ein komplettes Muster endet mit einem neuen Score-Eintrag oder einer
+     neuen Newsgroup-Auswahl.
+
+{
+     Tip: Wenn das Scorefile mit /EXPIRE aufger„umt wird, entfernt XPScore
+     alles vom abgelaufenen Score-Eintrag an bis zum n„chsten Score-Eintrag
+     oder der n„chsten Newsgroup-Auswahl. Damit dabei nicht die falschen
+     Kommentare entfernt werden, sollte man die Kommentare jeweils unter die
+     entsprechende Filterdefinition schreiben.
+}
+
+     Beispiele:
+
+     score 100
+
+     score =200 expires 31.12.2001
+
+     or score -200 expires 2010-10-10
+
+     Jedes Muster hat einen Namen. Dieser wird zun„chst vom Filter
+     automatisch vergeben und besteht aus einer laufenden Nummer. M”chte man
+     fr ein Muster noch zus„tzlich einen frei definierbaren Namen angeben,
+     geschieht das durch das Schlsselwort NAME. Dahinter kommt, durch
+     mindestens ein Leerzeichen getrennt, der Name des Musters. Wird ein
+     Name angegeben, muá er in direkt nach der SCORE-Zeile in einer neuen
+     Zeile angegeben werden. Zwischen der SCORE-Zeile und der NAME-Zeile
+     drfen lediglich Leerzeilen und Kommentare stehen.
+
+     Der Name wird sp„ter im Netzanrufbericht erscheinen.
+
+     Nach SCORE bzw. NAME kommen die Filterregeln, das ist einfach ein
+     Header (ohne ':', erlaubt sind alle Header, die in einem Artikel
+     vorkommen k”nnen; es wird nicht geprft, ob es den Header wirklich
+     gibt), danach ein Operator und dann der Suchbegriff. Der Suchbegriff
+     kann ebenfalls Wildcards enthalten; benutzt man keine Wildcards, muá
+     der Suchbegriff exakt passen (evtl. mit Ausnahme der
+     Groá-/Kleinschreibung, was durch entsprechende Operatoren festgelegt
+     wird, siehe weiter unten)!  Leerzeichen am Zeilenende werden
+     ebensowenig abgeschnitten wie Leerzeichen zwischen dem Operator und dem
+     Suchbegriff!
+
+     Beispiele:
+
+     subject=*crosspoint*
+
+     from=*mandrella*
+
+     newsgroups=*misc*
+
+
+     Die Operatoren:
+
+     Bei den folgenden Operatoren sind Wildcards m”glich:
+
+     = gleich, Groá-/Kleinschreibung wird nicht unterschieden!
+     == gleich, Groá-/Kleinschreibung wird unterschieden!
+     != nicht gleich, Groá-/Kleinschreibung wird nicht unterschieden!
+     !== nicht gleich, Groá-/Kleinschreibung wird unterschieden!
+
+     subject!=*crosspoint* paát zum Beispiel auf alle Artikel, bei denen im
+     Betreff _nicht_ crosspoint vorkommt; die Schreibweise von 'crosspoint'
+     ist in diesem Fall egal.
+
+     Bei den folgenden Operatoren sind keine Wildcards m”glich:
+
+     <= kleiner oder gleich
+     >= gr”áer oder gleich
+     < kleiner
+     > gr”áer
+
+
+  7. Lizenz
+
+     XP3P (auáer UUZ.EXE):
+
+       XP3P ist Freeware fr den nichtkommerziellen Einsatz. Das heiát, Sie
+       k”nnen dieses Tool unentgeltlich in Ihrem privaten Bereich nutzen.
+
+       Es ist nicht erlaubt, XP3P unter folgenden Bedingungen einzusetzen:
+
+         - im beruflichen bzw. kommerziellen Bereich
+         - bei Beh”rden
+         - im milit„rischen Bereich
+         - jegliche Bndelung mit anderen Tools
+         - Distribution einzelner Teile des XP3P-Toolkits
+         - jegliche direkte Integration in andere Tools, insbesondere wenn
+           durch den Einsatz von XP3P geldwerte Vorteile fr Dritte
+           entstehen.
+
+       XP3P kann trotz obiger Einschr„nkungen bei Einsatz im folgendem
+       Umfeld verwendet werden:
+
+         - Bildungstr„ger wie Schulen
+         - Universit„ten
+         - in der RFC/PPP-Box von XP2
+
+       M”chten Sie XP3P im kommerziellen Umfeld nutzen, so k”nnen Sie
+       jederzeit eine Lizenz k„uflich erwerben. Bitte treten Sie mit dem
+       Autor in Kontakt, um n„here Einzelheiten fr eine gesonderte Lizenz
+       in Erfahrung zu bringen.
+
+       Es ist nicht erlaubt, XP3P zu disassemblieren ('reverse engineering')
+       oder zu ver„ndern.
+
+
+     UUZ:
+
+       Das beiliegende UUZ.EXE unterliegt dem Copyright von CrossPoint und
+       Peter Mandrella.
+
+       Sie k”nnen UUZ nach den Lizenzbedingungen von CrossPoint 30 Tage lang
+       testen. Danach mssen Sie fr UUZ einen "B" oder "C"-Key (XP & RFC/
+       UUCP) erwerben oder ein anderweitiges Tool zum Konvertieren der
+       Nachrichten von RFC nach ZConnect bzw. umgekehrt verwenden. Im
+       kommerziellen Umfeld entf„llt die 30-Tage Testfrist, d. h. Sie mssen
+       UUZ dann sofort registrieren.
+
+       Sie mssen UUZ ebenfalls registrieren, wenn Sie UUZ in einer
+       ZConnect-Box unter CrossPoint betreiben, da UUZ zum RFC/UUCP
+       Zusatzpaket geh”rt.
+
+
+  8. Danksagungen
+
+     Hiermit m”chte ich mich bei allen bedanken, die mich bei der
+     Programmierung dieses Toolkits direkt oder indirekt untersttzt haben.
+
+     Insbesondre bedanke ich mich bei Soren Ager fr 'Agers Socket Library',
+     das XP3P die Low- und Highlevel-Routinen fr TCP/IP sowie die
+     Protokolle SMTP, POP3 und NNTP bereitstellt sowie bei Thomas W. Mller
+     fr seine aufschlussreichen Hinweise zur objektorientierten
+     Programmierung mit dem Klassenmodell.
+
+
+  9. Kontakt
+
+     XP2:          http://www.xp2.de/
+     CrossPoint:   http://www.crosspoint.de/
+
+     Robert B”ck:  robo@epost.de
+
+
+ 10. Garantieausschluá, Haftungsausschluá
+
+     Der Autor bernimmt keine Garantien irgendwelcher Art. Er garantiert
+     nicht fr die Verwendbarkeit dieses Programms fr irgendeinen Zweck.
+     Die Benutzung dieses Programms erfolgt auf eigene Gefahr. Der Autor
+     haftet nicht fr mittelbare oder unmittelbare Sch„den, die durch die
+     Benutzung oder die Nichtbenutzbarkeit dieses Programms entstehen.
+
+
+ 11. Warenzeichen
+
+     Die genannten Firmen- und Markennamen sowie Produktbezeichnungen
+     unterliegen in der Regel marken-, patent- oder warenzeichen-rechtlichem
+     Schutz.
+
+     CrossPoint ist eine eingetragene Marke von Peter Mandrella.
+
+
+                                                Mnchen, im Februar 2001
+                                                Robert B”ck
+
+
+{
+  $Log: XP3PREAD.ME,v $
+  Revision 1.2  2001/07/14 12:07:46  oh
+  Rechtschreibkorrektur
+
+  Revision 1.1  2001/07/11 19:47:20  rb
+  checkin
+
+
+}

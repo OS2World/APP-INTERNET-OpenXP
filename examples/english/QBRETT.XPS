@@ -1,0 +1,7 @@
+Hello $FIRSTNAME!
+
+** Subject: "$SUBJECT"
+**   Dated:  $ERSTELLT, $ERSTZEIT
+
+** $MUSER wrote to $FIDOEMPF:
+

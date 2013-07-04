@@ -1,0 +1,401 @@
+{ $Id: wishlist.txt,v 1.11 2001/08/14 08:20:19 mm Exp $ }
+------------------------------------------------------------------------
+
+User: Name <Mailadresse>
+Datum:
+eingetragen: Name des 'Eintragers', Datum
+
+Wunsch:
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <mk@neodoomer.de>
+Datum: 14.08.2001
+eingetragen: Maik Mueller, 14.08.2001
+
+Wunsch: Signatur
+        - Es w„re ganz praktisch, wenn man die Signatur schon direkt 
+          nach STRG-B wie die Anrede und dergleichen auch im Editor h„tte. 
+        - Beim Quoten einer Nachricht w„re es vielleicht sinnvoll, die
+          Signatur durch '-- ' zu erkennen und abzuschnippeln. 
+
+------------------------------------------------------------------------
+
+User: Oliver Hertel <oh@xp2.de>
+Datum: 22.03.2001
+eingetragen: Oliver Hertel, 22.03.2001
+
+Wunsch: Update-Screen. Wenn eine neue XP-Version installiert wurde,
+        sollte automatisch ein read.me oder so geladen und angezeigt
+        werden. Lieáe sich ber ein File oder einen Config-Eintrag
+        LastVersion machen, der ausgelesen und auf die aktuelle Version
+        gesetzt wird.
+
+------------------------------------------------------------------------
+
+User: Oliver Hertel <oh@xp2.de>
+Datum: 22.03.2001
+eingetragen: Oliver Hertel, 22.03.2001
+
+Wunsch: Kombination der Lesmodi ungelesen + [neues|heute|datum]
+
+------------------------------------------------------------------------
+
+User: Oliver Hertel <oh@xp2.de>
+Datum: 22.03.2001
+eingetragen: Oliver Hertel, 22.03.2001
+
+Wunsch: Brettmanager; beim Abbestellen von Brettern nachfragen, ob
+        abzubestellende leere Bretter gel”scht werden sollen.
+
+------------------------------------------------------------------------
+
+User: Oliver Hertel <oh@xp2.de>
+Datum: 01.03.2001
+eingetragen: Oliver Hertel, 01.03.2001
+
+Wunschliste:
+
+Listenbersichten (Newsgruppen/Userliste/Nachrichtenbersicht)
+- beliebig sortierbar (durch zwischengeschaltetes Index-File)
+    unsortiert, ungelesen/neues, Name, Kommentar, Box, Score,
+    Server/Domain (rckw„rts, als de.gmx@mayer.max) ...
+- Nachrichten ein 'Label' zuweisen (siehe Label in Emacs oder
+    Kategorie in Outlook), nach dem Label sollte auch sortiert
+    werden k”nnen
+- Sortieren/Hervorheben/Ausblenden nach dem Score (vom Scoring)
+- Mailinglisten-Pr„fix [bla] ordentlich ausblenden
+- Markieren einer Nachricht in einer Gruppe als FAQ sowie Hotkey zum
+    Anzeigen derselben
+
+Lister
+- Mail an Adresse im markierten Block, auch an ALLE Adressen im
+    markierten Block oder Auswahl...
+- Ausblenden der Signatur
+- Erstellung von Requestdateien mit URLs aud dem markierten Block
+    heraus (wie beim Fido-Request, nur eben fr Internet, fr wget
+    etc.)
+- Setzen von Lesezeichen (wichtig! finde ich)
+
+Editor
+- Erkennung von Headerzeilen am Body-Anfang und bernahme sinnvoller
+    Zeilen in den Header
+- Hotkey: Umlaute nach ae, oe... konvertieren
+- Quote: keine automatisches Quote der Signatur, nur bei markiertem
+    Block und Quote
+- Blockmarkierung (also rechteckig, nicht ber das Zeilenende
+    hinweg, z.B zum Ausschneiden von Spalten in Tabellen etc.
+- Linienziehen
+- Exportfilter HTML/XML -> ASCII
+- Codepage-Handling beim Im-/Export
+- Statistiken in der Statuszeile (momentaner Quoteanteil etc.)
+- Ausfhren von Formeln
+- Random Uppercase (fUeR FrEAkS)
+- einfache Zufallsverschlsselung (durch Zeichenvertauschung)
+- Auto-Fill, um einen Block zeilenweise mit einem Pr„fix
+  versehen zu k”nnen
+
+Schablonen
+- Komplette Mailschablonen, nicht nur Header/Footer, mit Makro, wo
+    der Quotetext eingefgt werden soll
+- Makrocollections, zwischen denen gewechselt werden kann
+
+Verschiedenes
+- Diary, das der User schreiben kann, mit automatischer
+    Datums-/Zeitangabe, wahlweise sollten auch XP2-Eintr„ge
+    ein-/ausblendbar sein (netcall, request, reorg,
+    Maileingang-/Ausgang etc.)
+- History der letzen Aktionen inklusive Tastenanschl„ge etc. zur
+    Nachverfolgung von 'hab ich eben was falsch gemacht' etc. :)
+- alternative Screensaver (Life etc.)
+- globale Scriptingm”glichkeiten
+- Automatische Indexgenerierung zum Helpfile (in IHS.EXE)
+- Helperzeile mit den momentan sinnvollsten Tastenbelegungen
+- Telnet-Client
+- Untersttzung von zwei XPs (Home-XP und Work-XP): Autopaketierung
+    der relevanten Dateien fr den Transfer
+- Autoarchivierung der empfangenen/gesendeten emails in eigene
+    Archiv-Dateien (Untersttzung mehrerer Formate), auch
+    komprimiert
+- Suche mit regular expressions
+
+------------------------------------------------------------------------
+
+User: J”rg Tewes <jtewes@t-online.de>
+Datum: 11.11.2000
+eingetragen: Maik Mller, 16.11.2000
+
+Wunsch: Rckw„rtssuche
+
+ Ist eine Rckw„rtssuche schwierig zu implementieren? W„re ein Feature was
+ ganz interessant fr mich w„re. Wenn ich hier in der 400 Kbyte grossen NG-
+ Liste von T-Online rumsuche passiert es mir ”fters das ich an einem
+ gesuchten Begriff vorbei bin, und dann muá ich immer wieder von vorne
+ anfangen. Auch sonst ist in groáen Mails eine Rckw„rtssuche nicht zu
+ verachten.
+
+------------------------------------------------------------------------
+
+User: Sven Buerger <fridolin@earthling.net>
+Datum: 09.11.2000
+eingetragen: Robert B”ck, 09.11.2000
+
+Wunsch: Betreff verl„ngern (Header)
+
+------------------------------------------------------------------------
+
+User: Thomas Hinkel <dfux@gmx.de>
+Datum: 03.11.2000
+eingetragen: Robert B”ck, 07.11.2000
+
+Wunsch: Anzahl der Eintr„ge im Zusatzmen erh”hen.
+
+Kommentar: šbel aufwendig, ich hab's mal versucht, aber wieder
+           hingeworfen - Oliver
+
+------------------------------------------------------------------------
+
+User: Sven Buerger <fridolin@earthling.net>
+Datum: 02.11.2000
+eingetragen: Robert B”ck, 02.11.2000
+
+Wunsch:
+
+1. Kosmetik in Serverauswahl. Wenn der Cursor auf einem Feld mit
+Serverauswahlm”glichkeit steht wird der Server groá angezeigt, sonst ist
+er aber immer klein (RFC/PPP-Box).
+
+2. Newsgroups sehen nach dem automatischen Anlegen (nicht bei
+Brettmanager bestellen) z.B. so aus "Ml.De.Mjh". Wenn ich kurz ber das
+Edit des Brettes mit dem Cursor durchrenne, wird sie (brigens auch die
+Serverboxanzeige bei Spezial) dann klein.
+
+3. Bei "a" bleibt der Cursor nicht auf dem Brett stehen sondern springt
+wild auf ein anderes.
+
+4. Die Schnellsuche mit "/" ist ineffizient. Es sollte bei / m”glich
+sein einen beliebigen Teil eines Brettnamens einzugeben und dann einfach
+mit Cursor durch die dazu passenden Bretter zu hpfen.
+
+5. Ich weiss nicht wonach XP beim Anlegen von Brettern die Gruppen
+zuweist, ich f„nde es aber sinnvoller, die gleiche Gruppe eines
+bestehenden Brettes zu w„hlen welches vom Namen am ehesten zum
+anzulegenden Brett passt. Das ganze auch fr die Haltezeit.
+
+6. [Bedienungsfehler des Users]
+
+7. Beim Lesen und Zappen via Ctrl-PageDown sollten bei Multiparts nur
+der Textpart angezeigt werden, wenn keiner da ist der HTML-Part direkt
+im Lister, und sonst die Auswahlbox die man beim Enter auf der Mail aus
+der Nachrichtenbersicht bekommt. Bei Esc w„hrend des Lesens einer
+Multipartmail sollte direkt zurck zur šbersicht gesprungen werden, da
+sonst diverse Makros bei Ausfhrung in ner Multipartmail Chaos treiben
+wrden bzw. ganz aufgegeben werden mssten.
+
+8. Ein Alt-B im Editor sollte wie beim Editieren via B Strg-B die Frage
+bekommen ob der Bezug erhalten bleiben soll.
+
+btw, die Priority-Unterstzung ist genial, via CS und XP-Score kriegeú
+ich jetzt die wichtigen Mails an den Anfang und die unwichtigen ansú
+Ende, okay, es werden nur die Netcallpuffer sortiert, aber solangeú die
+Onlinesortierung in der Nachrichtenbersicht nicht steht... :)ú
+
+------------------------------------------------------------------------
+
+User: Wolfgang Allinger <All@business.kbbs.org>
+Datum: 01.11.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch: Threads nachtr„glich unterbrechen
+
+Manchmal gibt es Monsterthreads, bei denen es sinnvoll w„re, den Thread
+an einer Stelle, wo das Thema sich „ndert, unterbrechen zu k”nnen.
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - PM-Archivierung: Es werden ziemlich viele Header dabei gekillt.
+   Besser w„re: Originalmail unver„ndert in das Userbrett verschieben.
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - Brettmanager: Zahlen und y hinter dem Newsgroupnamen irritiert Das
+                 ist aber nur manchmal sichtbar. Beim erneuern der
+                 Brettliste msste XP also immer erst richtig
+                 formatieren
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - Brettmanager: Unterscheidung zwischen anbestellt/nicht anbestellt, am
+                 besten vor dem Newsgroupnamen, dahinter w„re zu
+                 unbersichtlich
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - Mailinglistenverwaltung
+    - Umleitung in eigenes Brett
+    - interne Filterung in XP nach ausw„hlbaren Headern
+    - Verschicken von Mails aus Brett an eingestellte ML-Adresse
+    - Wegschneiden (nicht ausblenden) nur eines bestimmten [Tags]
+      eingehender Mails
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - sehr viel bessere Userverwaltung, komplett umstrukturiert
+   - verschiedene Gruppen zur Einordnung der User
+   - entsprechende Gruppeneinstellungen gelten fr alle User ohne eigene
+     Einstellungen
+   - eigene Schablonen
+   - Standartgruppe fr neue Eintraege
+   - Erweiterte M”glichkeiten: Name, Kommentar, mehrere eMailadressen
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - Einfache und intuitive M”glichkeit, um Mails und News in andere
+   Bretter zu verschieben ohne zu ver„ndern
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - STRG-B als STRG-P interpretieren in PM-F„chern
+   verst”át nicht gegen XP-Style, da in der Userliste
+   P = Passwort
+   B = Private Nachricht
+
+Kommentar: Naaa, das gef„llt mir gar nicht! - Robo
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - MIME-Handling auf das Schreiben erweitern.
+   - Beim Schreiben ber Men Datei(en) anh„ngen.
+   - Angeh„ngte Dateien in einem weiteren Men im Editor anzeigen und
+     entfernen k”nnen
+   - Geschriebenen Mails nachtr„glich Dateien anh„ngen
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - Dateiauswahldialog bersichtlicher gestalten
+   - Laufwerke in ein anderes Untermen verfrachten
+   - Verzeichnisse ber Dateien anzeigen
+   - Einspaltige Anzeige von Verzeichnissen und Dateien
+     - Anzeige des Namens links und der Dateigr”áe rechts
+     - Dateiname und Endung getrennt formatieren, z.B.:
+       |Filename     exe|      56.313|
+       (Anlehnung an Far, einem NC-Clone unter Win32-Console)
+   - Anzeige an Zeilenzahl anpassen (nutze hier 50 Zeilen und da sieht
+     die Auswahlbox etwas l„cherlich aus;))
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert B”ck, 01.11.2000
+
+Wunsch:
+
+ - relative Pfade erm”glichen (ausgehend vom XP-Dir)
+   z.B. \SPOOL\ wrde dann zu D:\XP\SPOOL\
+
+Kommentar: Wenn relativ, dann richtig! Msste dann .\SPOOL\ oder SPOOL\
+           heissen! - Robo
+
+------------------------------------------------------------------------
+
+User: Martin Foster <outpost.one@btinternet.com>
+Datum: 30.09.2000
+eingetragen: Robert B”ck, 08.10.2000
+
+Wunsch: Untersttzung des Fido-Flags Txy, siehe FSC-0062.
+
+Es geht darum, dass Mailboxen, die nicht st„ndig online sind, in diesem
+Flag die Onlinezeit kodieren k”nnen. XP soll das Flag bei Requests
+beachten.
+
+------------------------------------------------------------------------
+
+{
+
+  $Log: wishlist.txt,v $
+  Revision 1.11  2001/08/14 08:20:19  mm
+  no message
+
+  Revision 1.10  2001/03/22 13:59:30  oh
+  -Updates
+
+  Revision 1.9  2001/03/22 02:43:39  oh
+  -Update
+
+  Revision 1.7  2001/03/02 16:52:16  oh
+  update
+
+  Revision 1.6  2000/11/16 21:08:07  mm
+  Wunsch eingetragen
+
+  Revision 1.5  2000/11/09 00:18:17  rb
+  Wunsch hinzugefgt
+
+  Revision 1.4  2000/11/07 02:50:24  rb
+  Wunsch hinzugefgt
+
+  Revision 1.3  2000/11/02 10:43:40  rb
+  Wnsche und Bugs in die jeweiligen Listen eingetragen
+
+  Revision 1.2  2000/11/01 16:56:24  rb
+  Ein paar Wnsche eingetragen
+
+  Revision 1.1  2000/10/08 14:00:22  rb
+  Wunschliste angelegt
+
+ }

@@ -1,0 +1,21 @@
+Ein paar Infos:
+
+Torben Weibert hat die Entwicklung von XP2Soup eingestellt. Als einige User 
+nach Weiterentwicklung bzw. Bugfixes fragten, hat er die Sourcen unter der 
+GPL freigegeben. Ich habe mich daraufhin breitschlagen lassen, auf Anforderung
+daran rumzuschnitzen. Dann habe ich die Sourcen fÅr die Version 1.1.0 erhalten 
+und fÅr ein paar User kompiliert. Ich habe noch einen kleinen Bug gefunden und 
+ausgemerzt (siehe xp2soup.pas) und daraufhin die Version 1.1.1 herausgebracht, 
+die diesem Paket beiliegt. Mehr kann ich erst mal leider auch nicht sagen. 
+Doku gibt es auch keine, wer eine braucht, bitte die von der letzten von 
+Torben herausgebrachten Version 1.0.3 benutzen.
+
+Ansprechpartner sind:
+
+Jîrg Zieren <joerg.zieren@post.rwth-aachen.de>
+Robert Bîck <robo@munich.netsurf.de>
+
+Viel Spass,
+ 
+  Robert Bîck
+  

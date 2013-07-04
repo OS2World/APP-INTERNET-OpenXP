@@ -1,0 +1,208 @@
+{ $Id: buglist.txt,v 1.7 2001/05/29 14:23:08 tj Exp $ }
+------------------------------------------------------------------------
+
+User: Name <Mailadresse>
+Datum:
+eingetragen: Name des 'Eintragers', Datum
+
+Bug:
+
+------------------------------------------------------------------------
+
+User        : Sven Reichelt
+Datum       : 27.05.2001
+eingetragen : Torsten Jaehnigen, 29.05.2001
+Msg-ID      : 81duMmukHSB@sven.reichelt.dialin.t-online.de
+Quelle      : new.kannofant.de://crosspoint/xp2/pub/talk
+
+Bug         : 
+
+Wenn ich in einer Nachricht eine Zeile markiere und ALT-B zur  
+Betreffsuche drÅcke, kann es danach passieren, da· XP2 abstÅrzt.
+
+Es passiert regelmÑ·ig dann, wenn ich etwas Åber alle Bretter  
+suchen lasse und nichts gefunden wird. Danach kommt die Meldung,  
+da· nichts gefunden wurde. Will ich dann zur nÑchsten Nachricht  
+weiterspringen, stÅrzt XP2 mit folgender Fehlermeldung ab:
+
+
+<DB> interner Fehler: G:\INTERNET\XP2\MSGS: ReadN(GELESEN) at  
+EOF!
+
+------------------------------------------------------------------------
+
+User: cbartsch@gmx.de  (Christian Bartsch)
+Datum: 09.03.01
+eingetragen: Oliver Hertel, 22.03.2001
+
+Bug:
+
+also verschlÅsseltes Senden mit der 2.6.3 klappt jetzt, nur entschlÅsseln
+will er nicht :-(
+
+Ich habe eine ASCII-armored PGP-Mail bekommen und will die Åber Nachricht
+/ PGP /Dekodieren ansehen. PGP mault aber "Falsches Mantra, Du hast nicht
+den passenden privaten SchlÅssel", ob wohl das Mantra Åberhaupt nicht
+abgefragt wurde und ich natÅrlich den privaten SchlÅssel habe.
+
+Wenn ich Åber Nachricht / PGP /irgendwas mit Key editieren gehe komme ich
+ohne zu Mucken auf Kommandozeile ins PGP und er lÑ·t mich meinen SchlÅssel
+bearbeiten.
+
+Was mir auffÑllt ist, da· XP2 beim Aufruf nicht mit -u meine Key-ID mit
+Åbergibt, kann es das sein? In der config.txt ist die aber natÅrlich
+gesetzt.
+
+[spÑter]
+
+Es liegt scheinbar wirlich daran, da· schlicht nicht das Mantra abgefragt
+wird!
+
+Nachdem ich in der DOS-Box mal PGPPASS gesetzt hatte klappte es auch mit
+dem Dekodieren.
+
+------------------------------------------------------------------------
+
+User: ?
+Datum: ?
+eingetragen: Oliver Hertel, 01.03.2001
+
+Bug:
+
+- Der Brettvertreter funktioniert beim Versand von Binaries immer noch
+  nicht, sofern dieser per Default in der Brett-Config eingetragen
+  ist.
+- Im Mime/Lister/Extrakter werden ISO-kodierte Filenamen nicht dekodiert:
+
+--- Cut ----------------------------------------------------------
+      +- Nachrichtenteil ------- Zeilen ----------- Dateiname -+
+      | Text                        70                         |
+      | Datei (msword)            1983 =?iso-8859-1?q?F=FCh... |
+      | gesamte Nachricht         2068                         |
+      +--------------------------------------------------------+
+--- Cut End ------------------------------------------------------
+
+------------------------------------------------------------------------
+
+User: Maik MÅller (mm@xp2.de)
+Datum: 16.11.2000
+eingetragen: Maik MÅller, 16.11.2000
+
+Bug:
+
+ - Gegeben sei eine Nachricht mit Followup-to:/Diskussion-in:-Header,
+   welcher auf ein Brett verweist, fÅr das innerhalb von XP eine
+   Umleitung definiert wurde (Vertreter und Schreibsperre). Die Brett-
+   antworten landen dann nicht wie erwartet beim Vertreter sondern
+   in dem Brett auf welches der Diskussion-in:-Header verweist, die
+   Schreibsperre wird ignoriert.
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert Bîck, 01.11.2000
+
+Bug:
+
+ - XP erstellt bestimmte Verzeichnisse automatisch, egal wie oft ich sie
+   lîsche. Verzeichnisse werden jedoch nicht gebraucht.
+
+    - /FIDO/
+    - /SPOOL/JANUS/
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert Bîck, 01.11.2000
+
+Bug:
+
+ - Wenn Weiterschalten auf nÑchste Nachricht UND PM-Archivierung
+   aktiviert ist, dann landet man nicht auf der nÑchsten, sondern auf
+   der ÅbernÑchsten Mail
+
+
+User: Sven Buerger <fridolin@earthling.net>
+
+Gegeben ist hier Lesen/Ungelesen
+
+1. Bei Fidobrettern springt XP, sobald ich aus dem (nach dem Lesen)
+leeren Brett gehe nicht auf das nÑchste volle Brett sondern gleich auf
+das öbernÑchste.
+
+2. Der Weiterschalter geht erst wenn ganz oben eine leere Group trotz
+Lesen/Ungelesen angezeigt wird. Diese entsteht wenn ich aus einem leeren
+Brett komme, der Cursor steht dann auf diesem leeren Brett. Wenn ich
+dann von Hand auf das nÑchste Brett gehe, funktioniert danach der
+Weiterschalter wieder, bis ich das leere Brett oben z.B. durch
+zweimaliges "a" wieder weggekriegt habe, dann geht das Spiel von vorn
+los.
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert Bîck, 01.11.2000
+
+Bug:
+
+ - Bekannter Bug mit leerem Brett und Status:Ungelesene Mails (>)
+   Einfach alle PMs archivieren, Brett bleibt auf Ungelesen
+
+------------------------------------------------------------------------
+
+User: Martin Kuhlmann <darkjedi@neodoomer.de>
+Datum: 08.10.2000
+eingetragen: Robert Bîck, 01.11.2000
+
+Bug:
+
+ - Boxname wird an diversen Stellen immer gro·geschrieben, z.B.
+   - Edit/Kurznamen
+
+------------------------------------------------------------------------
+
+User: Michael Heydekamp <michael.heydekamp@t-online.de>
+Datum: 28.07.2000
+eingetragen: Robert Bîck, 01.11.2000
+
+Bug: Absturz in Verbindung mit Novell Client32
+
+Das Problem wird von TestShare in FILEIO.PAS hervorgerufen, aber
+offensichtlich nur im Zusammenhang mit Novell.
+
+Nachtrag von Uwe Becker <u.becker@pbf.de>:
+
+Der Fehler soll nur mit den Win9x Clients von Novell auftreten, mit Win
+NT klappts astrein.
+
+------------------------------------------------------------------------
+
+{
+
+  $Log: buglist.txt,v $
+  Revision 1.7  2001/05/29 14:23:08  tj
+  Bug: Betreffsuche
+
+  Revision 1.6  2001/03/22 02:43:39  oh
+  -Update
+
+  Revision 1.5  2001/03/02 16:52:16  oh
+  update
+
+  Revision 1.4  2000/12/15 17:27:23  rb
+  ErgÑnzung
+
+  Revision 1.3  2000/11/16 15:10:01  mm
+  *** empty log message ***
+
+  Revision 1.2  2000/11/02 10:43:40  rb
+  WÅnsche und Bugs in die jeweiligen Listen eingetragen
+
+  Revision 1.1  2000/11/01 16:58:15  rb
+  Bugliste angelegt
+
+
+ }

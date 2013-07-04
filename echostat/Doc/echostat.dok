@@ -1,0 +1,472 @@
+ÉÍÍÍÍÍÄÄÄÄ  Hilmar's  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+º   ÒÄÄ¿ ÖÄÄ¿ Ò  Â ÖÄÄ¿  ÖÄ¿ ÖÄÒÄ¿ ÖÄÄ¿ ÖÄÒÄ¿    Echomailstatistikprogramm  º
+º   ÇÄ   º    ÇÄÄ´ º  ³  ÓÄ¿   º   ÇÄÄ´   º      Version 1.41 beta          º
+º   ĞÄÄÙ ÓÄÄÙ Ğ  Á ÓÄÄÙ ÓÄÄÙ   Ğ   Ğ  Á   Ğ      Juni 1995                  º
+ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶
+º                                                                           º
+º     Dieses Paket ist Freeware. Es darf vollst„ndig und unver„ndert        º
+º     weitergegeben werden. Alle Rechte liegen beim Autor.                  º
+º                                                                           º
+º                   Autor   : Hilmar Buchta                                 º
+º                             Kampstr. 16                                   º
+º                             47228 Duisburg                                º
+º                   FIDO    : Hilmar Buchta @ 2:2448/2026.2                 º
+º                   Internet: Hilmar@fact.rhein-ruhr.de                     º
+º                                                                           º
+º       Vielen Dank fr Tests und Kritik an alle, die mich bei der          º
+º       Programmierung durch Aufmunterungen und Kritik tatkr„ftig           º
+º       untersttzt haben. Echostat w„re sonst nie so weit entwickelt       º
+º       worden.                                                             º
+º                                                                           º
+ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+ ECHOSTAT erstellt Echomailstatistiken fr Crosspoint. Crosspoint ist ein
+ Pointprogramm von Peter Mandrella.
+
+ Wesentliche Features:
+
+  ş ECHOSTAT ist Freeware, darf also v”llig frei genutzt werden. Dies gilt
+    insbesondere auch fr kommerzielle Mailboxbetreiber.
+  ş Ausgewertet werden Anzahl, L„nge, durchschnittliche L„nge und
+    Quoteanteil der Nachrichten, sowie Empf„nger (falls vom Netztyp
+    untersttzt), verwendete Betreffs und Uhrzeit der Mails
+    Mehrere Bretter (z.B. alle internen Bretter einer Box) lassen sich in
+    einer Statistik zusammenfassen.
+  ş Leichte Bedienbarkeit ber Dialogfenster mit Mausbedienung.
+  ş Fertige Statistikeinstellungen lassen sich abspeichern.
+  ş Statistiken k”nnen automatisch erzeugt werden (z.B. jede Woche).
+  ş Keine Beschr„nkung (auáer durch Hauptspeicher) nach Anzahl der
+    User/Betreffs o.„..
+
+ WICHTIG:  Einige User eines Brettes  k”nnten sich durch ver”ffentlichte
+ Statistiken  gest”rt  fhlen.  Daher sollte  ECHOSTAT  nur  zu privaten
+ Zwecken  oder unter Einverst„ndnis der  in diesem Brett mitschreibenden
+ Personen verwendet werden.
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 1  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  Fr Schnelleinsteiger: Was ist neu?                                      ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+İUnterschiede  der Dokumentation zur Version 1.4 sind durch einen Balken
+İam linken Rand hervorgehoben.
+
+
+ Unterschiede Version 1.41 zu 1.4
+ ş Bugfixes bei einigen Speicherproblemen
+ ş Neue Statistik ber alle beteiligten Bretter
+ ş Initialisierungsdatei zur Speicherung genereller Einstellungen
+
+ Unterschiede Version 1.4 zu 1.31:
+ ş ECHOSTAT wechselt bei fehlender Brettangabe (in der Kommandozeile) in
+   einen Dialogmodus, in dem es einfacher zu bedienen ist.
+ ş Statistiken k”nnen gespeichert werden. Das Programm AUTOSTAT ist jetzt in
+   ECHOSTAT integriert.
+ ş Groáe Nachrichten werden korrekt gelesen. Kleinere Fehler in der
+   Statistik konnten beseitigt werden.
+ ş Das Ausgabeziel kann in der Kommandozeile gew„hlt werden.
+
+ WICHTIG:  Benutzer von ECHOSTAT in  einer Version vor 1.4beta/R6 mssen
+ bercksichtigen,  daá bei fehlenden Datumsangaben  die letzte Woche als
+ Defaultwert  angenommen  wird (bis dahin  wurde  die folgende Woche als
+ Defaultwert angenommen).
+
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 2  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  Installation von ECHOSTAT                                                ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+ Das Echostat-Programmpaket umfaát die folgenden Dateien:
+
+ ECHOSTAT.EXE      Das Echomailstatistikprogramm
+ ECHOSTAT.DOK      Diese Datei
+ WICHTIG!.DOK      Wichtigste Informationen fr Leute, die diesen Text
+                   nicht lesen m”chten
+İECHOSTAT.INI      Initialisierungsdatei von Echostat
+
+İDie  ECHOSTAT.EXE  kopiert  man in  ein  beliebiges Verzeichnis auf der
+İFestplatte.  Im  folgenden gehe ich  davon  aus, daá dieses Verzeichnis
+İc:\xpoint\tools  heiát. In das gleiche  Verzeichnis wird auch die Datei
+İechostat.ini  kopiert. Die Ini-Datei ist eine einfache ASCII-Datei, die
+İmit einem beliebigen Texteditor bearbeitet werden kann. Kommentarzeilen
+İbeginnen  mit  einem  Semikolon.  Zwei  Eintr„ge  sind  dort  unbedingt
+İvorzunehmen:
+İ
+İ         xpoint_dir=c:\xpoint
+İ         xpoint_auto_dir=c:\xpoint\autoexec
+İ
+İDie  Pfade mssen ggf. angepaát werden.  In der Ini-Datei befinden sich
+İnoch  Eintr„ge  zum Datumsformat und zu  anderen  Dingen, die aber dort
+İdokumentriert sind.
+
+ Unter  Crosspoint bindet man ECHOSTAT  dann mit folgenden Einstellungen
+ in das Zusatzmen ein:
+
+           ÚÄ Zusatz-Men 3 ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+           ³                                                       ³
+           ³  Menanzeige    ^Echostat                             ³
+           ³                                                       ³
+           ³  Programmname   c:\xpoint\tools\echostat              ³
+           ³                                                       ³
+           ³  $FILE-Nachr.   Puffer            [ ]   aus Betreff  ³
+           ³                                                       ³
+           ³   [ ]   Warten                                        ³
+           ³   [ ]   Vollbild              Speicher:   500  KByte  ³
+           ³   [x]   Ausgabe an Lister                             ³
+           ³   [x]   AUTOEXEC-Verzeichnis bearbeiten               ³
+           ³                                                       ³
+           ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Das  Kreuz  bei  "Ausgabe  an Lister"  fhrt  dazu,  daá (zumindest bei
+ Crosspoint V3.02) stets der Lister aufgerufen wird, d.h. auch dann wenn
+ ECHOSTAT  seine Ausgabe an ein Brett  oder in eine Datei geschickt hat.
+ Um  dies zu vermeiden l„dt ECHOSTAT  im Dialogmodus die Escape-Taste in
+ den Tastaturpuffer, falls keine Ausgabe an den Lister selektiert wurde,
+ d.h. der Lister wird sofort wieder geschlossen.
+ Das  ^ vor dem E bei "Echostat" bedeutet, daá das "E" von "Echostat" im
+ Zusatzmen hervorgehoben wird.
+
+ Echostat  sollte  danach  einmal  gestartet  werden  (aus  DOS oder aus
+ Crosspoint heraus), um das Crosspoint-Homeverzeichnis einzustellen.
+
+ Will  man  die  Option  nutzen,  daá  Echostat  automatisch Statistiken
+ erstellen  kann (siehe Kapitel 4), so muá ECHOSTAT mit der Option /auto
+ in  regelm„áigen  Abst„nden  gestartet werden.  Ich  empfehle daher das
+ Anlegen einer Batchdatei, ber die Crosspoint gestartet wird:
+
+  XP.BAT:
+   c:\xpoint\tools\echostat /auto
+   c:\xpoint\xp
+
+ Evtl.  ist  hier  natrlich  der  Pfad  fr  ECHOSTAT  anzupassen. Eine
+ nderung  in der Datei start.bat im Autoexec-Verzeichnis von Crosspoint
+ empfiehlt   sich  nicht,  da  Crosspoint  in  diesem  Fall  automatisch
+ berechnete Statistiken erst beim bern„chsten Start verschicken kann.
+
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 3  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  Das Programm ECHOSTAT                                                    ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+ VOR  JEDEM STARTEN VON ECHOSTAT SOLLTE EINE REORGANISATION DURCHGEFšHRT
+ WERDEN, FALLS NICHT ERWšNSCHT IST, DAS GEL™SCHTE NACHRICHTEN MITGEZHLT
+ WERDEN !!!
+
+ Nach dem Starten von ECHOSTAT erscheint zun„chst die Statistikauswahl:
+
+          ÉÍ Echostat Statistikauswahl ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+          º                                                          º
+          º Echostat V1.4 (c) 1995 Hilmar Buchta                     º
+          º Dieses Programm ist Freeware                             º
+ gew„hlte º                                                          º
+ Stat. -->º !FACT, intern (A)                              Ok        º
+          ºÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿                  º
+          º³!FACT, intern (A)                          L”schen      º
+          º³Chatterbox, intern (A)                Û                  º
+ Stat.-   º³                                      °       Name       º
+ liste -->º³                                      °                  º
+          º³                                      °       Neu        º
+          º³                                      °                  º
+          º³                                      °     Abbruch      º
+          º³                                      °                  º
+          º³                                            Setup       º
+          ºÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ                  º
+          ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+ Beim  ersten  Start  (bzw.  falls  noch  keine  Statistiken gespeichert
+ wurden),  werden hier die Statistikliste und die Kn”pfe "Ok", "L”schen"
+ und  "Name" nicht mit angezeigt.  Diese Kn”pfe funktionieren nur, falls
+ vorher  eine  Statistik  aus dem  Auswahlfenster  angeklickt  und damit
+ ausgew„hlt wurde.
+
+ Ok      :  Ausgew„hlte Statistik verwenden (kann dann noch ge„ndert werden)
+ L”schen :  Ausgew„hlte Statistik l”schen (keine Sicherheitsabfrage)
+ Name    :  Ausgew„hlte Statistik umbennenen
+ Neu     :  Neue Statistik anlegen
+ Abbruch :  Programm beenden
+ Setup   :  Crosspoint-Homeverzeichnis „ndern
+
+ Danach erh„lt man die Brettauswahl. Hier k”nnen beliebig viele Bretter,
+ die in die Statistik mit einbezogen werden sollen, markiert werden. Mit
+ der  Schaltfl„che "Zurck" gelangt man wieder zur Statistikauswahl, mit
+ "Ok" zu den Statistikoptionen:
+
+
+   ÉÍ Echostat Optionen [!FACT, Intern [Auto]] ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+   º                                                                    º
+   º ÚÄ Start ÄÄÄÄÄÄÄÄÄÄÄÄ¿  ÚÄ Optionen ÄÄÄÄÄÄÄÄÄÄ¿                    º
+   º ³     28.05.1995     ³  ³[ş] Sender           ³        GO!         º
+   º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ  ³[ ] Empf„nger        ³                    º
+   º                         ³[ş] Diagramm         ³      Zurck        º
+   º ÚÄ Ende ÄÄÄÄÄÄÄÄÄÄÄÄÄ¿  ³[ş] Betreffs         ³                    º
+   º ³( ) bis  03.06.1995 ³  ³[ş] Zeitauswertung   ³      Spezial       º
+   º ³() ganze Woche     ³  ³[ş] IBM Zeichen      ³                    º
+   º ³( ) ganzer Monat    ³  ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ     Speichern      º
+   º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ                                             º
+   º                                                        Top         º
+   º ÚÄ Ausgabeziel ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿                    º
+   º ³( ) Brett ¯Statistik                         ³                    º
+   º ³() Brett   /-FACT-INTERN                   ³                    º
+   º ³( ) Lister                                   ³                    º
+   º ³( ) Datei   C:\BP\OUTPUT\STAT.OUT            ³      Abbruch       º
+   º ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ                    º
+   ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+ Nach  Bet„tigung  des Schalters "Top"  erscheint neben dem Optionenfeld
+ ein   Mini-Dialog,   indem  man  die   maximale  Anzahl  an  Usern  pro
+ Optionspunkt  einstellen  kann.  So  lassen  sich berlange Statistiken
+ (gerade bei den Betreffs) vermeiden. Eingabe von "0" oder "alle", falls
+ man alle User erfassen m”chte.
+
+ Die Funktionen der Schaltfl„che "Spezial" werden im 4. Kapitel besprochen.
+
+ Mit  "GO!"  wird  die  Statistik ausgel”st  und  ja  nach Wahl (Bereich
+ Ausgabeziel)  gespeichert.  Startet  man ECHOSTAT  aus  DOS  heraus mit
+ Ausgabeziel Lister, so emfiehlt sich die Form
+
+   echostat |more
+
+ Mit  "Speichern" kann man die aktuellen  Einstellungen in die Liste der
+ gespeicherten Statistiken aufnehmen.
+
+
+
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 4  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  ECHOSTAT fr Fortgeschrittene                                            ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+
+ Bet„tigt  man  in  dem Optionendialog  die  Schaltfl„che  "Spezial", so
+ erscheint folgender Dialog:
+
+               ÉÍ Spezielle Optionen ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+               º                                                º
+               º [ş]  automatisch versenden                     º
+               º Sperrzeit :   3   Tage                         º
+               º                                                º
+               º Betreff   :   Statistik ($START-$END)          º
+               º Vorspann  :                                    º
+               º Nachspann :   C:\XPOINT\TOOLS\FACT.NCH         º
+               º                                                º
+               º      Ok                           Abbruch      º
+               º                                                º
+               ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+ Bei Vorspann/Nachspann kann der Dateiname einer existierenden Textdatei
+ angegeben werden. Diese wird dann vor/hinter der Statistik eingefgt.
+
+ Der  Text  im  Feld  Betreff  wird  als  Betreff  verwendet,  falls die
+ Statistik  als Mail verschickt wird. Die  beiden Makros $START und $END
+ werden in Start- bzw. Enddatum der Statistik expandiert.
+
+ Der  Schalter  "automatisch  versenden"  und  das  Eingabefeld  fr die
+ Sperrzeit  beziehen sich auf die  M”glichkeit, mit ECHOSTAT automatisch
+ Statistiken  zu  versenden.  Voraussetzung  hierfr  ist,  daá ECHOSTAT
+ entsprechend den Angaben im zweiten Kapitel installiert wurde.
+
+ Ist  der  Schalter  "automatisch  versenden"  aktiviert,  so  wird beim
+ n„chsten  Start von Echostat mit dem Parameter /auto eine Statistik zur
+ unter   Optionen   eingestellten  Startzeit   ausgerechnet,  falls  die
+ entsprechende   Endzeit   (ergibt   sich   aus   den  Einstellungen  im
+ Optionen-Dialog)  um  mindestens soviele  Tage berschritten wurde, wie
+ der  Wert  bei  Sperrzeit  angibt  (damit  auch  Nachzgler noch erfaát
+ werden). Anschlieáend werden Start und Endzeit entsprechend erh”ht (bei
+ w”chentl. Statistiken um 7 Tage, bei monatl. auf den n„chsten Monat und
+ bei  expliziter  Angabe  der  Endzeit um  die  Differenz  von Start und
+ Endzeit).  Das  h”rt sich komplizierter an,  als es wirklich ist. Darum
+ ein Beispiel:
+
+ Sie  wollen  w”chentlich automatisch  Statistiken erstellen. Dazu geben
+ Sie  das  Datum der ersten Statistik  in das Startfeld ein, stellen fr
+ das  Enddatum  auf  "ganze  Woche"  und  aktivieren  den  Schalter  fr
+ automatische  Statistiken  mit Sperrzeit  3. Speichern nicht vergessen!
+ Nehmen  wir  an,  das  Startdatum ist  ein  Sonntag  (etwa  2.4.). Dann
+ erstreckt sich die Statistik bis zum darauffolgenden Samstag (8.4.). Am
+ Dienstag  (11.4)  sind weitere drei Tage  vergangen,  so daá - wenn Sie
+ Crosspoint  an diesem oder einem folgenden  Tag starten - die Statistik
+ automatisch  berechnet  und  versendet  wird  (vorausgesetzt  Sie haben
+ ECHOSTAT entsprechend den Angaben im zweiten Kapitel installiert).
+
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 5  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  ECHOSTAT ber Kommandozeile                                              ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+ Um  Batchbetrieb  zu  erm”glichen,  verfgt  ECHOSTAT  ber  zahlreiche
+ Parameter, die im folgenden ausfhrlich erl„utert werden.
+
+ echostat [/s:<datum>] [/e:<datum>] [/t:<Wert>] [<xp_dir>] [/a] [/m]
+     [/o:[S][E][G][B]] [/@:<name>] [/z:[[!]<name>] /b:<brettname>
+     <xpoint_dir>
+
+ ş  /b:Brettname : Brettname, fr den die Statistik erstellt werden soll
+ Fehlt   dieser  Parameter,  so  wird  ECHOSTAT  im  interaktiven  Modus
+ gestartet.  Beim Parameter /b muá jedoch nicht der volle Name angegeben
+ werden,  sondern nur ein Teil davon.  Dieser Teil muá den tats„chlichen
+ Brettnamen  eindeutig  identifizieren. ECHOSTAT  sucht  nach dem ersten
+ Brettnamen,  der diesen Teilstring enth„lt und danach nur noch nach dem
+ vollen Namen. Mehrere Bretter k”nnen durch mehrmalige Verwendung dieses
+ Parameters angegeben werden (siehe auch Option /@)
+
+ ş <xpoint_dir>   : Crosspoint-Verzeichnis angegeben
+ Gibt   das  Crosspoint-Homeverzeichnis  an  und  hat  Vorrang  von  der
+ Einstellung in der Datei ECHOSTAT.CFG
+
+ ş  /s:<datum>    : Startdatum fr Statistik
+ Mit  diesem  Parameter wird das Datum  angegeben,  ab dem die Statistik
+ berechnet  werden soll. Alle Nachrichten, die an diesem Tag oder sp„ter
+ (bis  zum  Enddatum)  geschrieben  wurden,  werden bercksichtigt. Wird
+ dieser     Parameter    nicht    verwendet,    so    werden    folgende
+ Standardeinstellung zugrundegelegt:
+ 1. Parameter /m wurde nicht verwendet:
+  Die Statistik erstreckt sich ber die letzten 7 Tage (einschl. heute).
+  Der Parameter /e wird ignoriert.
+ 2. Parameter /m wurde angegeben:
+  Die Statistik erstreckt sich auf den aktuellen Monat.
+  Der Parameter /e wird ignoriert
+
+ ş /e:<datum>     : Endedatum der Statistik
+ Die  Statistik umfaát alle Nachrichten bis  zu diesem Datum, wobei auch
+ noch  die  Nachrichten  bercksichtigt  werden,  die  an  dem  Enddatum
+ geschrieben  wurden. Wird dieser Parameter nicht angegeben, so wird die
+ Standardeinstellung gem„á dem Parameter /m bestimmt.
+
+ ş /t:<Wert>      :  In Tabellen nur bestimmte User anzeigen
+ Sollten  sich in dem Brett zu viele User tummeln, k”nnte die Auswertung
+ schnell  unbersichtlich  werden.  Zu  diesem  Zweck  kann  man mit dem
+ Parameter  /t die Ausgabe auf die  User beschr„nken, die besonders weit
+ oben in der Tabelle stehen, z.B. zeigt /t:10 nur die ersten 10 Eintr„ge
+ bei  der  Auswertung an. Eine  getrennte Aufschlsselung nach einzelnen
+ Statistiken ist jedoch nur im Dialogmodus m”glich.
+
+ ş /a             : Nur Standard ASCII-Zeichen verwenden
+ Anstelle  der  sonst blichen  IBM-Grafikzeichen verwendet ECHOSTAT bei
+ Angabe der Option /a nur gew”hnliche ASCII Zeichen mit Code zwischen 32
+ und 127.
+
+ ş /m             : Statistik fr vollen Monat
+ Siehe Option /s
+
+ ş /o             : Aussehen der Statistik
+ Mit der Option /o kann der Umfang der Statistik festgelegt werden. Den
+ einzelnen Bereichen wurden Kennbuchstaben zugeordnet:
+    S: Statistik ber Nachrichtensender
+    E: Statistik ber Nachrichtenempf„nger
+    G: Grafik (Balkendiagramm fr Nachrichtengr”áen)
+    B: Statistik ber H„ufigkeit der Betreffs.
+İ   Z: Statistik ber die Erstellzeit der Nachrichten
+İ   L: Brettliste in šbersicht anzeigen
+İ   D: Boxenliste in šbersicht anzeigen
+ Die   Kennbuchstaben   werden   einfach   hintereinander   geschrieben.
+ Voreinstellung ist /o:SEGB.
+
+ ş /@             : Parameterdatei angeben
+ Mit  dem Parameter /@ kann eine zus„tzliche Datei angegeben werden, die
+ an  dieser  Stelle  eingelesen  wird. Auf  diese  Weise  l„át  sich die
+ L„ngenbeschr„nkung  der  Kommandozeile  umgehen,  was  insbesondere fr
+ Mehrbrettstatistiken  sinnvoll  sein drfte. Die  Datei  darf alle oben
+ genannten Kommandozeilenparameter enthalten mit Ausnahme des Parameters
+ /@  selber.  Zeilen, die mit einem  Semikolon  ';' beginnen, gelten als
+ Kommentar.  Zus„tzlich  zu  der  M”glichkeit,  Parameterdateien  via /@
+ anzugeben,   kann  auch  die  Umgebungsvariable  ECHOSTATPAR  verwendet
+ werden, wobei die folgende Reihenfolge verwendet wird:
+  1. Umgebungsvariable ECHOSTATPAR
+  2. Kommandozeile von links nach rechts, Parameterdateien werden an der
+     Stelle ihres Vorkommens ausgewertet.
+  Weiter hinten stehende Optionen haben Vorrang vor den vorher aufgefhrten.
+
+ ş /Z:[[!]<name>] : Ausgabeziel angeben
+ Mit  diesem  Parameter kann das Ziel  der Ausgabe von der Kommandozeile
+ her gesteuert werden:
+  /Z, /Z:    ohne Parameter fhrt zur Ausgabe in das Brett
+             /¯Statistik
+  /Z:<name>  fhrt zur Ausgabe in das Brett <name>
+  /Z:!<name> fhrt zur Ausgabe in die Datei <name>
+
+
+
+ Beispiele:
+
+ ş echostat /o:SE
+ Beschr„nkung  der Statistik auf Sender  und Empf„nger. Da keine Bretter
+ angegeben  wurden, wechselt ECHOSTAT in den Dialogmodus, nimmt aber an,
+ daá eine neue Statistik erstellt werden soll.
+
+ ş echostat /s:1.1.95 /b:crosspoint >statist.txt
+ Erzeugt eine Statistik fr ein Brett, was den Namen crosspoint enth„lt,
+ z.B.  /FIDO/CROSSPOINT.GER. Startdatum ist der 1.1.95, die Ausgabe wird
+ in die Datei statist.txt umgeleitet.
+
+ ş echostat /s:1.1.1995 /e:1.1.1995 /b:crosspoint /t:10 c:\xp3
+ Wie  vorher,  nur  daá jetzt die  Statistik  nur fr den 1.1.95 erzeugt
+ wird,  nur die Top10 der User ausgegeben wird und die MPUFFER.* Dateien
+ im  Verzeichnis  c:\xp3  gesucht werden.  Die  Ausgabe  erfolgt auf dem
+ Bildschirm.
+
+ ş echostat /s:1.1.1995 /e:1.1.1995 /b:crosspoint /t:10 c:\xp3 >>statist.txt
+ Wie  vorher,  nur  daá  jetzt die  Statistik  an  die Datei statist.txt
+ angeh„ngt  wird. Falls diese Datei noch  nicht existierte, wird sie von
+ DOS erzeugt.
+
+ ş echostat /s:6.1.95 /m /b:crosspoint
+ Diese Statistik umfaát s„mtliche Nachrichten vom 1.1.1995 bis zum
+ 31.1.1995. ECHOSTAT weiá, daá der Januar 31 Tage hat und bercksichtigt
+ auch Schaltjahre.
+
+ ş echostat /s:6.1.95 /m /o:S /b:crosspoint
+ Wie  das vorhergehende Beispiel, es wird  jedoch nur eine Statistik fr
+ die Nachrichtensender (H„ufigkeit der Mails) ausgegeben.
+
+ ş echostat /@:mypar.par /t:20
+ Liest Parameter aus der Datei mypar.par, die z.B. so aussehen k”nnte:
+
+  MYPAR.PAR:
+   ; Statistik fr alle wichtigen Bretter
+   /b:geschwafel.ger /b:nonsense.ger
+   /b:witze.ger /t:10 /o:SE
+
+ Der  Parameter  /t  wird  anschlieáend jedoch  durch  den  Wert aus der
+ Kommandozeile berschrieben.
+
+ ş set echostatpar=/t:20 /o:se /b:black.ch
+   echostat >test.dat
+  Verwendet die Parameter, die vorher mit dem set-Befehl angegeben wurden.
+
+
+
+
+ÕÍÍÍÄÄÄÄ  KAPITEL 6  ÄÄÄÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸
+³  History                                                                  ³
+ÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾
+
+Jan 95     : Version 1.0: Einfache Statistiken ber das Mailaufkommen.
+             Beschr„nkung auf 200 User pro Brett.
+             Version 1.1: Erweiterung auf bis zu 15000 User pro Brett
+Feb 95     : Version 1.3: Bugfix: Einige Puffer konnten nicht komplett
+             gelesen werden. Statistik jetzt auch fr Nachrichten-
+             empf„nger und H„ufigkeit der Betreffs. Keine Beschr„nkung
+             der User pro Brett (auáer durch den Hauptspeicher).
+             Zeitvorschau fr Dauer der Statistik. Statistiken fr
+             mehrere Bretter gleichzeitig m”glich. Untersttzung von
+             monatlichen Statistiken
+Feb 95     : Version 1.31: Neue Routine zum Einlesen der Puffer. Einige
+             Puffer wurden in der Version 1.3 nicht komplett gelesen. Durch
+             die neue Routine konnte auch das Einlesen der Puffer
+             beschleunigt werden. Weiterhin wurde ein kleiner Fehler bei der
+             Prozentangabe der Empf„ngerstatistiken beseitigt.
+Mrz-Mai 95 : Arbeit an der Version 1.4 mit Dialogfhrung. Einige Bugs wurden
+             beseitigt (keine Fehler mehr beim Einlesen groáer Nachrichten).
+             Einige Beta-Versionen. Autostat ist jetzt in Echostat
+             integriert. Statistiksetups k”nnen gespeichert werden.
+Apr 96     : Betatests V1.41. Einige Bugs beim Einlesen der Nachrichten
+             konnten beseitigt werden. Neue Statistik ber Bretter und Boxen.

@@ -1,0 +1,56 @@
+{ $Id: test.txt,v 1.11 2001/08/05 17:30:02 mm Exp $ }
+
+
+Diese Datei dient nur zu Testzwecken zwischen Deinem CVS-Client
+und dem Server hier....
+
+-------------------------------------------------------------------
+- [MM] Test...
+
+- [MM] CVS Test
+
+- [TWJ] CVS Server Test (Problemmeldung vom 16.10.2000)
+
+- [MH] Weiterer CVS-Test...
+
+-------------------------------------------------------------------
+
+- Umlauttest im LogInfo: (ci wie gehabt) 
+
+-------------------------------------------------------------------
+
+- Umlauttest im LogInfo: (ci -F file)
+
+-------------------------------------------------------------------
+
+02.02.2001 - testle
+
+
+{
+ $Log: test.txt,v $
+ Revision 1.11  2001/08/05 17:30:02  mm
+ test halt...
+
+ Revision 1.10  2001/02/02 22:09:02  tj
+ testle
+
+ Revision 1.9  2000/11/16 14:06:26  mm
+ CVS Test
+
+ Revision 1.8  2000/10/16 15:07:12  MH
+ -.-
+
+ Revision 1.7  2000/10/16 15:02:38  tj
+ CVS Test
+
+ Revision 1.6  2000/06/22 17:30:07  MH
+ - Test fÅr Umlaute im Log (ÑîÅ·)
+ - Test fÅr Umbruch im Log
+
+ Revision 1.5  2000/06/22 17:27:27  MH
+ Umlautest: (‰ˆ¸ﬂ)
+
+ Revision 1.4  2000/06/22 17:18:23  MH
+ LogInfo hinzugefuegt
+
+}

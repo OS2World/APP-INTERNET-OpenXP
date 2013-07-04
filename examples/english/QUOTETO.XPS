@@ -1,0 +1,9 @@
+Hello $FIRSTNAME!
+
+** Replying to a message in "$AREA" **
+
+** Subject: "$SUBJECT"
+**   Dated:  $ERSTELLT, $ERSTZEIT
+
+** $MUSER wrote to $FIDOEMPF:
+

@@ -1,0 +1,1298 @@
+
+
+
+
+
+
+
+
+
+
+                  -------------------------------
+                  Cross \\//    Version 3.31 BETA
+                        //\\ Point            DOS
+                  ¯  universelle Pointsoftware  ®
+                  -------------------------------
+
+
+
+
+
+
+                           RFC/PPP-Modul
+
+
+                    Versuch einer Dokumentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+         basierend auf einigen Teilen der UUCP Dokumentation von
+                     Peter Mandrella (c) 1993-1999
+                 
+            (c) Thomas Gohel <gohel@basicguru.com>, XP2-Team
+
+
+Inhalt
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+I    Grundlagen
+
+     1.1   Usenet, Internet und Sub-Netze
+     1.2   News, Mails und Mailinglisten
+     1.3   Die šbertragungsprotokolle
+     1.4   Wie werde ich Usenet-Teilnehmer?
+
+
+II   Installation und Bedienung
+
+     2.1   Installation und Konfiguration
+     2.2   Netzanruf
+     2.3   Bestellen und Verwalten von Newsgroups
+     2.4   "Sysop-Mode" (Disk-Poll)
+
+
+III  Arbeiten mit der RFC/PPP-Box
+
+     3.1   Envelope-Adressierung
+     3.2   Cancel-Nachrichten
+     3.3   Supersedes-Nachrichten
+     3.4   Teilnahme an Mailinglisten
+     3.5   Dateitransfer per Mail
+     3.6   Dateiempfang per Mail
+
+IV   Mehrere Server und Mulithreading mit der RFC/PPP-Box
+
+     4.1   Pakete mitsenden
+     4.2   Zus„tzliche Mail-Server
+     4.3   Mehrere News-Server    
+     
+V    Technische Dokumentation
+
+     5.1   RFC-Daten, Packer und der Nachrichten-Konvertierer UUZ
+     5.2   Definition eigener RFC-Headerzeilen
+
+
+Anhang
+
+     A.    Glosssar
+     B.    CrossPoint/PPP - Versionsgeschichte
+
+
+I   Grundlagen
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+Vorwort
+
+Im April 2000, also 4 Monate nach der Ver”ffentlichung der CrossPoint-Sources,
+begannen die Programmierer des XP2-Teams mit der Entwicklung einer universiellen
+Schnittstelle (in Zukunft nur noch RFC/PPP-Box genannt) welche CrossPoint Usern
+eine komfortable M”glichkeit bietet, am Medium Usenet teilzunehmen. Mit dieser Arbeit
+wurde etwas begonnen, dessen Umfang damals kaum abzusch„tzen war: Dem Umbau einer
+Z-Netz/Fido/MausNet/UUCP-Pointsoftware zu einem vollst„ndigen POP3/SMTP und auch NNTP-Paket.
+Das Ziel war, ein anwenderfreundliches Usenet-Komplettsystem herzustellen, das sich genauso
+leicht installieren, bedienen und warten l„át wie z.B. ein Fido-Pointprogramm.
+
+Das erste Ergebnis dieser Arbeit befindet sich nun mit dieser XP2-Beta auf Ihrer Festplatte.
+Wie jedes erste Ergebnis, so stellt auch dieses sicher noch nicht der Weisheit
+letzten Schluá dar. So beinhaltet diese Beta z.B. noch nicht den vollen vom XP2-
+Team geplanten Funktionsumfang, Dokumentationen oder auch Oberfl„chen.
+
+Insgesamt bietet CrossPoint aber schon jetzt einen Komfort und Leistungsumfang,
+der bekannte Mail & News-Clients bei weitem bertreffen sollte.
+
+
+Haben Sie bereits mit einer anderen Usenet-Software gearbeitet und m”chten nun
+auf CrossPoint umsteigen?
+
+Dann sollten Sie zun„chst einmal XPOINT.DOC lesen, oder zumindest die ersten
+Kapitel kurz berfliegen, um sich mit dem Grundkonzept von CrossPoint vertraut
+zu machen; es weicht deutlich von dem anderer Newsreader/Mailer ab. Die
+Terminologie in den einzelnen Netzen ist sehr unterschiedlich, und um eine
+gr”átm”gliche Konsistenz zu erreichen, verwendet CrossPoint innerhalb des
+Programms weitgehend einheitliche Begriffe, z.B. "Brett" statt "Newsgroup" und
+"PM" statt "Mail". Bei allen Verfechtern einer klaren Usenet-Terminologie m”chte 
+ich mich schonmal im voraus dafr entschuldigen. Innerhalb von PPP.DOC habe ich 
+mich bemht, die "korrekten" Bezeichnungen zu verwenden.
+
+Im šbrigen k”nnen Sie gleich bei Abschnitt II dieses Textes fortfahren; Teil I
+wendet sich ausschlieálich an Usenet-Einsteiger.
+
+
+
+Sind Sie Neueinsteiger im Usenet?
+
+Dann sollten Sie nichts berstrzen. Das Usenet erhebt den Anspruch, professioneller
+zu sein als Hobby-Mailboxnetze wie Fido oder Z-Netz, und manchmal ist es das
+sogar. Lesen Sie den folgenden Text genau, und machen Sie sich vor allem mit den
+technischen Details vertraut. Wenn Sie in einer Usenet-Gruppe eine technische
+Frage stellen, mssen Sie damit rechnen, mit einem Schwall technischer Begriffe
+und Sachverhalte berschttet zu werden. Dem sollten Sie gewachsen sein.
+
+
+
+Bevor ich zum Schluá dieses Vorwortes komme, m”chte ich mich noch bei Martin
+Max Huckenbeck, der die programmiertechnische Umsetzung in CrossPoint umsetzte,
+bei Robert B”ck fr Fragen des Designs und der UUZ spezifischen Weiterentwicklungen
+und natrlich bei allen XP2 Betatester bedanken. Ein weiterer Dank geht an die
+Entwickler, welche die n”tige Client-Software zur RFC/PPP-Box geschrieben und
+diese als Freeware der CrossPoint-Gemeinde zur Verfgung gestellt haben.
+
+
+Thomas Gohel (XP2-Team)
+Juli 2000
+
+
+1.1  Usenet, Internet und Sub-Netze
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş RFCs: Die technische Grundlage
+
+Allen Netzen, mit denen wir uns im folgenden besch„ftigen werden, ist eines
+gemeinsam: Sie begrnden sich auf einer Reihe von technischen Standards, die
+witzigerweise die Bezeichnung "Request for Comments" (Aufforderung zu Kommentaren)
+haben; man spricht daher von "RFC-basierten Netzen". Die verschiedenen RFC-Texte
+sind bzw. werden fortlaufend durchnumeriert und in den Netzen ver”ffentlicht.
+Falls Sie sich n„her fr diese Dokumente interessieren, so finden Sie in
+Abschnitt IV dieses Textes eine šbersicht derjenigen, die fr CrossPoint
+relevant sind.
+
+
+ş Was ist Usenet?
+
+"Ein loser Zusammenschluá von allen, die meinen, daá sie dazugeh”ren". Dies
+ist eine sehr treffende Definition, aber sie ist wenig hilfreich. Besser l„át
+sich das Usenet als die Menge aller Rechner - genannt "sites" - beschreiben,
+die untereinander ”ffentliche Nachrichten - genannt "news" - austauschen.
+Nach dieser allgemeinen Definition sind z.B. auch Mailboxen im Z-Netz
+Teilnehmer im Usenet; in etwas spezielleren Definitionen wird das Usenet
+dagegen auf den RFC-Bereich eingeschr„nkt. Der entsprechende RFC-Standard
+tr„gt die Nummr 1036; somit ist das Usenet also die Menge aller Rechner, die
+”ffentliche Nachrichten im RFC-1036-Format austauschen.
+
+Um es noch einmal zu verdeutlichen: Das Usenet ist *kein* geschlossenes,
+physikalisches Netz, genausowenig wie "die Autofahrer" eine geschlossene
+Bev”lkerungsgruppe sind.
+
+Da Sie mit CrossPoint ”ffentliche Nachrichten austauschen werden, dazu noch
+im RFC-Format, nehmen Sie mit CrossPoint am Usenet teil.
+
+
+ş Was ist Internet?
+
+Das Internet ist ein weltweiter Zusammenschluá von ziemlich vielen Rechnern -
+meist unixartiger Natur -, die ber das in den RFCs definierte Internet
+Protocol (IP) Daten untereinander austauschen. Zwischen den einzelnen Systemen
+bestehen permanente Verbindungen ber Standleitungen, oft auch ber besondere
+Hochgeschwindigkeitsleitungen, sodaá dieses Netz ausgesprochen schnell ist;
+Nachrichtenlaufzeiten von wenigen Sekunden sind keine Seltenheit. Mittels IP
+l„át sich von jedem zu jedem beliebiebigen anderen Internet-Rechner eine
+direkte Verbindung herstellen. Jeder der Rechner hat eine weltweit eindeutige
+Internet-Adresse.
+
+Die Aufgabe des Internet besteht darin, die Infrastruktur fr bestimmte
+Dienste zur Verfgung zu stellen. Wichtige Dienste sind z.B. der Austausch von
+”ffentlichen Nachrichten (News) und privaten Nachrichten (Mail), die šbertragung
+von Dateien (FTP = File Transfer Protocol) und das Herstellen von Online-Terminal-Verbindungen
+zu einem Internet-Rechner (Remote Login). Technische Grundlage fr diese Dienste
+bilden wiederum entsprechende RFC-Standards.
+
+Betreiber des Internet sind haupts„chlich Firmen, Universit„ten und ”ffentliche
+Einrichtungen. Als privater Anwender werden sie wegen der hohen Kosten
+normalerweise nicht direkt am Internet teilnehmen; CrossPoint ist auch gar
+nicht dafr ausgelegt.
+
+
+ş Sub-Netze
+
+Das Internet ist nicht nach auáen abgeschlossen, sondern es stellt Verbindungen
+zwischen einer Vielzahl von Sub-Netzen (logischen Teilnetzen) her. Das
+Kennzeichen der Sub-Netze ist, daá sie ebenfalls bestimmte Dienste bereitstellen
+- insbesondere Mail und News -, und daá sie einen oder mehrere šbergangspunkte
+zum Internet besitzen, d.h. Systeme, die sowohl am Sub-Netz als auch am
+Internet teilnehmen. Schickt nun ein Teilnehmer von Sub-Netz A in Deutschland
+eine Mail an jemanden im Sub-Netz B in den USA, dann tritt sie in Deutschland
+in das Internet ein, wird darin schnell in die USA transportiert und tritt dort
+wieder aus dem Internet aus.
+
+Ein Beispiel fr ein solches Sub-Netz ist das gleichnamige SubNet in Deutschland
+- ein Zusammenschluss von Privatpersonen, die ihre Rechner ber Modem- und
+ISDN-Verbindungen zu einem logischen Netz verknpft haben. Der zentrale
+Rechner des SubNet verfgt ber einen InterNet-Zugang und wickelt den Verkehr
+mit der Auáenwelt ab. Daneben gibt es auch viele regionale Sub-Netze wie
+z.B. Hanse-Networking (das HanseNet) in Hamburg oder das Hannover-Net (HanNet)
+in Hannover. Diese Netze besitzen ”ffentliche Modem- und ISDN-Zug„nge, die Sie
+fr unterschiedliche Gebhren nutzen k”nnen.
+
+
+
+1.2  News, Mails und Mailinglisten
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+W„hrend innerhalb von CrossPoint der Unterschied zwischen einer ”ffentlichen
+und einer privaten Nachricht nur im Drcken einer anderen Taste besteht, wird
+in RFC-Netzen streng zwischen Mail (= privaten Nachrichten) und News (= ”ffentlichen
+Nachrichten) unterschieden. Traditionell werden sogar zum Versenden von Mail
+und News unterschiedliche Programme verwendet. Als CrossPoint-User merken Sie
+diesen Unterschied z.B. daran, daá fr Mail und News oft unterschiedliche
+Kostenregelungen gelten, oder daá bestimmte Features nur bei News oder nur
+bei Mails (z.B. Envelope-Adressen; mehr dazu sp„ter) untersttzt werden.
+
+
+ş Mails (PMs)
+
+Das Wichtigste an einer Mail ist die Adresse des Empf„ngers. Im Usenet gibt es
+ungef„hr ein halbes Dutzend verschiedene Arten, Mails zu adressieren. Innerhalb
+von CrossPoint wird nur *eine* Form der Adressierung verwendet; andere Formen
+werden, soweit m”glich, in diese Form umgewandelt.
+
+
+- Domainadressierung (Internet-Adressierung)
+
+Dies ist DIE Standardform der Adressierung. Sie ist einerseits leistungsf„hig
+genug, um die ungeheure Anzahl von Teilnehmern in RFC-basierten Netzen in den
+Griff zu bekommen, andererseits aber sehr einfach zu handhaben.
+
+Eine "domainisierte" Adresse hat immer folgende Form (die Leerzeichen geh”ren
+nicht dazu und dienen nur der bersichtlicheren Darstellung) ...
+
+        User @ Rechner . Domain . Topleveldomain
+        
+und wird immer von rechts nach links interpretiert. Schicken Sie z.B. eine
+Mail an "ghostwriter@hot.zer.de", dann l„uft sie folgenden Weg:
+
+
+Topleveldomain ist ".de"
+
+--4 ->  Die Mail geht an den zentralen Rechner in Deutschland, der fr "de"
+zust„ndig ist. Dieser Rechner kennt alle Domains unterhalb von "de" und
+stellt die Nachricht an den zust„ndigen Rechner fr die betreffende Domain
+zu:
+
+Domain ist ".zer.de"
+
+--4 ->  Die Mail geht an den zentralen deutschen Rechner fr die Domain "zer"
+innerhalb von "de". Dieser wiederum kennt alle Rechner, die an "zer" teilnehmen
+und schickt die Mail weiter an den Zielrechner:
+
+Rechner ist "hot.zer.de"
+
+--4 ->  Nun wird der linke Teil der Adresse als Username interpretiert, d.h.
+die Mail landet im Postfach von "ghostwriter".
+
+Etwas anders verl„uft der Weg der Nachricht natrlich, wenn Sie sie z.B.
+innerhalb der Domain "zer.de" absenden. In diesem Fall wird sie nicht erst
+bis zum Zentralrechner fr "de" weitergeleitet, sondern direkt innerhalb der
+Domain "zer" zugestellt.
+
+An diesem Beispiel ist brigens auch sehr sch”n zu erkennen, daá die
+Domain-Adressoerung nicht auf bestimmte Netze beschr„nkt ist; "zer.de"
+befindet sich n„mlich im Z-Netz, einem nicht-RFC-basierten Netz, die Nachricht
+l„uft also ber einen Gateway (Schnittstelle zwischen zwei Netzen).
+
+
+Weitere Beispiele fr Topleveldomains sind:
+        
+    .fr     Frankreich                  \
+    .dk     D„nemark                     |  L„nderkennungen
+    .fi     Finnland                    /
+        
+    .com    kommerzielles Teilnetz      \
+    .edu    Bildungseinrichtungen        | vor allem in Nord-
+    .gov    Regierungs-Teilnetz          | Amerika verbreite
+    .mil    milit„risches Teilnetz       | TopLevel-Domains
+    .nato   Teilnetz der NATO            |
+    .org    Organisation                /
+
+
+Es gibt noch zwei abgewandelte Formen der Domainadressierung, bei denen die
+Adresse um den Realname (also Ihren Namen) erweitert wird:
+
+        ghostwriter@hot.zer.de (Ulrich Stamm)
+        "Ulrich Stamm" <ghostwriter@hot.zer.de>
+
+Innerhalb von CrossPoint werden Sie diese Form der Adressierung aber nie
+verwenden, da XP immer Adresse und Realname trennt (Einzige Ausnahme: Die
+Eingabe einer Vertreteradresse mit Realname bei /Edit/Boxen/Edit/RFC|UUCP|PPP).
+
+Es k”nnte aber passieren, daá jemand seine Adresse in dieser Form angibt. Um
+ihn oder sie mit XP anzuschreiben, mssen Sie den Realname und die Klammern
+weglassen. Die Groá/Kleinschreibung des Domainteils der Adressen ist brigens
+beliebig; ghostwriter@HOT.Zer.de w„re also ebenfalls m”glich. Oft darf auch
+der Username beliebig geschrieben werden - verlassen sollten Sie sich darauf
+aber nicht.
+
+Einige Mailinglisten-Server oder Mail-Clients untersttzen obige Adressierungs-
+Varianten nicht korrekt. Sie k”nnen deshalb die Adressierungsvariante fr 
+Ihre geschriebene Mail „ndern, von (Default): 
+
+         ghostwriter@hot.zer.de (Ulrich Stamm)
+
+auf:
+         "Ulrich Stamm" <ghostwriter@hot.zer.de>
+         
+„ndern. Benutzen Sie dazu den "-absncsty" Schalter in UUZ oder kopieren Sie
+eine leere Datei mit dem Namen "ABSNCSTY.UUZ" in das Arbeitsverzeichnis von
+UUZ (s. Kap. 5.1).
+
+
+ş MIME
+
+Ursprnglich konnten RFC-Nachrichten nur aus reinen ASCII-Zeichen bestehen,
+d.h. es konnten keine nationalen Sonderzeichen und keine Bin„rdaten bertragen
+werden. Seit 1992 gibt es einen neuen Standard namens MIME, der dieses Manko
+behebt, und der von CrossPoint bereits weitgehend untersttzt wird. Es wird
+aber noch eine Weile dauern, bis MIME netzweit verwendet wird - wenn Sie innerhalb
+einer Nachricht z.B. deutsche Umlaute verwenden, kann es durchaus passieren,
+daá sie beim Empf„nger in Form von unlesbaren Hieroglyphen ankommen. Sie sollten
+also vorerst noch sparsam damit umgehen, zumindest bei Nachrichten ins Ausland.
+
+
+ş News
+
+™ffentliche Nachrichten im Usenet, genannt Artikel, werden - wie in allen
+anderen Netzen auch - in verschiedenen Brettern verteilt, genannt Newsgroups
+oder Gruppen. Die Anzahl der Newsgroups ist schwer abzusch„tzen, da sie
+t„glich schwankt, und nirgendwo wirklich alle Newsgroups verfgbar sind; sie
+drfte z.Zt. in der Gr”áenordnung von ca. 50000 Stck liegen, wobei es t„glich
+mehr werden ...
+
+Die Gruppennamen sind hierarchisch angeordnet, und die einzelnen Ebenen werden
+durch Punkte getrennt. So steht z.B.
+
+   de.comm.software.crosspoint
+
+fr die Gruppe CROSSPOINT im Bereich SOFTWARE in der Hierarchie COMPuter.
+Beachten Sie, daá innerhalb von CrossPoint keine Punkte, sondern grunds„tzlich
+Slashes (/) zum Trennen der einzelnen Brettebenen verwendet werden! Innerhalb von 
+XP sieht diese Gruppe also so aus:
+
+   /de/comm/software/crosspoint
+
+(Ausnahmen best„tigen die Regel: Bei /Config/Anzeige/Bretter k”nnen Sie
+die Anzeige fr die Brettliste - und *nur* dafr - auf "Punktschreibweise"
+umstellen).
+
+
+Eine Besonderheit von Usenet-News, die inzwischen auch im Z-Netz bernommen
+wurde, sind die sogenannten Crosspostings. Dies sind Nachrichten, die
+physikalisch nur einmal vorhanden sind, sich aber in mehreren Gruppen befinden,
+d.h. die mehrere Empf„nger haben. Auf diese Weise k”nnen Artikel, die thematisch
+in mehrere Gruppen geh”ren, in jede passende Gruppe geschickt werden, ohne daá
+sie mehrfach gesendet werden máten. N„heres dazu finden Sie in Kap. 4.6. von
+XPOINT.DOC.
+
+
+ş moderierte Newsgroups
+
+Beim Stichwort "Moderator" f„llt Ihnen vielleicht das FidoNet ein, wo in jedem
+Brett ein Moderator lauert, der Sie auf alle etwaigen Regelverst”áe hinweisen
+wird. Mit dem Moderatorsystem im Usenet hat es jedoch eine v”llig andere
+Bewandtnis: In moderierte Newsgroups drfen Sie nicht direkt schreiben.
+Stattdessen mssen Sie jede Nachricht an einen Moderator senden, der entscheided,
+ob sie zum Thema der Gruppe paát - wenn ja, dann wird er/sie die Nachricht
+dorthin weiterleiten.
+
+Das automatische Umleiten Ihrer Nachrichten an einen Moderator kann CrossPoint
+fr Sie bernehmen; Sie mssen dazu nur die Adresse des Moderators als
+Brettvertreter eintragen. N„heres dazu finden Sie in Kap. 4.5. von XPOINT.DOC.
+
+
+ş Mailinglisten
+
+Das Einrichten von Newsgroups ist mit einem gewissen Aufwand und Kosten fr die
+an der šbertragung beteiligten Systeme verbunden. Mailinglisten sind eine
+einfache Alternative zu Newsgroups, die es jedem erm”glicht, eine Konferenz zu
+einem bestimmten Thema zu er”ffnen, ohne eine neue Newsgroup einrichten zu
+mssen.
+
+Technisch gesehen ist eine Mailingliste nichts anderes als ein irgendwo
+installierter, automatisch arbeitender Nachrichtenverteiler; in der Praxis ist
+sie eine ber den Mailweg arbeitende Newsgroup. Schicken Sie eine Nachricht an
+die Mailingliste, so wird sie automatisch an alle Listenteilnehmer weitergeleitet.
+Um an einer Mailingliste teilzunehmen, mssen Sie eine Anmeldenachricht an den
+Listenverwalter (das ist meist kein Mensch, sondern ein automatisch arbeitendes
+Programm (ein "Daemon")) senden. Gleiches gilt fr das Abmelden von der Liste.
+Eine Liste aller bekannten Mailinglisten wird regelm„áig in der Gruppe
+mail.mailing-lists ver”ffentlicht.
+
+
+
+
+1.3  Die šbertragungsprotokolle
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş POP3 - Das Protokoll zum Abholen Ihrer Mails
+
+[in Arbeit]
+
+    
+ş SMTP - Das Protokoll zum Verschicken Ihrer Mails
+
+[in Arbeit]    
+
+
+ş NNTP - Das Protokoll zum Austauschen von ”ffentlichen Postings
+
+[in Arbeit]}
+
+
+
+
+1.4  Wie werde ich Usenet-Teilnehmer?
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Eine Usenet-Account erwerben
+
+Die Anmeldung eines Usenet-Accounts ist in der Zwischenzeit derartig einfach,
+das ich nicht weiter darauf eingehen m”chte. Sie ben”tigen in jedem Fall einen
+Provider, der Ihnen auch einen eigenen Mail- und News-Server zur Verfgng stellt.
+Weiterhin muá dieser Provider die blichen Internet-Protokolle fr den Mail- und
+News-Austausch anbieten. Ein solcher Provider w„re z.B. T-Online, w„hrend AOL
+eigene Protokolle dafr entwickelt hat.
+
+
+ş Postmeister, Abuses und Wurzeln
+
+Von anderen Netzen kennen Sie m”glicherweise den Username SYSOP als Synonym
+fr den Systembetreiber. In RFC-basierten Netzen ist dieser Name „uáerst
+unblich; stattdessen erreichen Sie Ihren Ansprechpartner dort immer unter
+dem Namen "postmaster" (d.h. postmaster@system.do.main). Gelegentlich wird
+auch die Bezeichnung "root" verwendet, was dem Namen des Systemverwalters auf
+einem Unix-Rechner entspricht. Weitere Einzelheiten entnehmen Sie bitte den
+Informationen Ihres Providers (Webpages, Hotline, etc.)
+
+Fr Probleme mit anderen Usern hat sich der Name "abuse" (d.h. abuse@system.do.main)
+eingebrgert, wogegen Probleme mit dem Bezug von Newsgroupen oft an "news" oder
+"newsmaster" (d.h. newsmaster@system.do.main) zu richten sind.
+
+
+ş Wie sollte ich mich im Usenet verhalten?
+
+Als Neuuser sollten Sie erst einmal Erfahrungen sammeln. Studieren Sie das
+Verhalten anderer Usenet-Teilnehmer und lernen Sie daraus. Lesen Sie die
+Artikel in de.newusers und de.newusers.questions; dort finden Sie wertvolle
+Hinweise fr Einsteiger oder k”nnen sich unklare Fragen beantworten lassen.
+
+Wenn Ihnen das Verhalten eines Users nicht gef„llt, dann rufen Sie nicht
+nach der Koordination - es gibt n„mlich keine. Das Usenet ist ein streng
+chaotisch organisiertes, selbsttragendes Gebilde. Wenn Sie meinen, daá jemand
+aus dem Netz ausgeschlossen werden sollte, dann k”nnen Sie dies umgehend
+veranlassen: Nehmen Sie ihn/sie einfach in Ihren Nachrichtenfilter (Fachjargon:
+Killfile) auf, und schon sind Sie ihn/sie fr immer los :-)
+
+Denken Sie aber auch immer daran, daá Ihnen das gleiche passieren kann,
+falls Sie mit Ihren Artikeln jemandem Grund dazu geben.
+
+
+
+II   Installation und Bedienung
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+Dieser Abschnitt enth„lt Informationen, die speziell die Installation und
+Nutzung von CrossPoint im Usenet betreffen. Ausfhrlichere Informationen zur
+Installation und Benutzung finden Sie in XPOINT.DOC.
+
+
+
+
+2.1  Installation und Konfiguration
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Zun„chst die schlechte Nachricht: Sie ben”tigen ein Zusatzprogramm um mit CrossPoint
+am Usenet teilzunehmen. Dieses resultiert aus der Ursache, das Peter Mandrella
+weiterhin das Copyright fr CrossPoint beansprucht und auch auf eine Registierungs-
+gebhr fr die DOS-Version von CrossPoint besteht. Die Programmierer der PPP-Tools
+verdeutlichen damit, das Ihre Clients unter einem anderen Copyright stehen, denn die
+zus„tzlichen PPP-Clients fr CrossPoint sind bis heute FREEWARE.
+
+Nun die gute Nachricht: Zur RFC/PPP-Box sind folgende Clients kompatibel:
+
+-  UKAW (Win32 Client der auf das DFš-Netzwerk aufsetzt,
+   www.gohel.de)  
+-  XP3P (OS/2 & Win32 Clients, www.xp2.de)
+
+Als Erstes mssen Sie einige Daten ber Ihren Usenet-Account in Erfahrung bringen:
+
+-  Telefonnummer fr die Einwahl
+-  Ihre eMail-Adresse
+-  Namen fr POP3, SMTP und NNTP-Server
+
+Auáerdem mssen Sie noch drei Dinge mit dem Provider ausmachen:
+
+-  Ihren Usernamen
+-  Ihren Loginnamen
+-  Ihr Paáwort
+
+
+
+Beim ersten Start fragt CrossPoint folgende Eingaben ab:
+
+ş  den Netztyp Ihres Servers: Geben Sie "RFC/PPP" ein.
+
+--3 ş  Boxname: Geben Sie hier einen Namen, mit denen Sie diese Box in Zukunft
+in CrossPoint bezeichnen m”chten (dieser Name ist nicht von technischer Bedeutung)
+
+--3 ş  den Usernamen: Das ist der Name, unter dem Sie schreiben werden (der
+Teil vor dem "@" in Ihrer Adresse). Der Name kann sp„ter jederzeit beliebig
+ge„ndert werden.
+
+Wenn Sie CrossPoint bereits fr ein anderes Netz installiert hatten, muá
+der PPP-Server wie gewohnt per /Edit/Boxen/Neu angelegt werden.
+
+
+Als n„chstes mssen Sie die einzelnen Felder unter /Edit/Boxen/Edit
+ausfllen. Ausfhrlichere Erl„uterungen dazu finden Sie in der Online-Hilfe.
+Die Envelope-Eintr„ge werden automatisch aus Ihrer eMail-Adresse erstellt, Sie
+k”nnen diese Eintr„ge zun„chst unver„ndert lassen.
+
+Wichtig sind die Einstellungen unter Edit/Namen: Unter "Realname" sollten Sie
+Ihren richtigen Namen eintragen. Dies ist zwar keine unbedingte Pflicht, geh”rt
+im Usenet aber zum guten Ton. Im Feld "Domain" muá Ihre eigene Domain bzw. die
+Domain Ihres Providers eingetragen werden. 
+
+Hier noch ein Beispiel:
+
+Ihre Adresse:  ich@domain.org
+
+           ->  Ihr Username:                ich
+               Ihre Domain:                 domain
+               Top Level Doamin             .org
+
+Sollten Sie Inhaber einer eigenen Domain sein, so sollten Sie noch die Option
+"MAILER-DAEMON als Absender" aktivieren. In diesem Falle werden Empf„ngsbest„tigungen
+nicht mit Ihrer privaten Adresse, sondern mit "MAILER-DAEMON" als Absender verschickt.
+               
+
+Einige weitere RFC/PPP-Einstellungen finden Sie bei /Config/Optionen/Netze/Verschiedenes;
+N„heres dazu ist in der Online-Hilfe erl„utert. Wenn Sie noch keine Usenet-Erfahrung
+haben, sollten Sie die Einstellungen zun„chst unver„ndert lassen.
+
+
+
+
+2.2  Netzanruf
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Sind alle Daten korrekt eingetragen, so k”nnen Sie den ersten Anruf starten.
+Verwenden Sie dazu den Menpunkt /Netcall/Einzeln. Nach beendetem Anruf
+finden Sie im Brett /¯Netzanruf eine Nachricht mit dem Ergebnis des Anrufs.
+
+
+ş Wenn der Netcall nicht funktioniert ...
+
+dann kann das sehr viele Ursachen haben. Ich will versuchen, alle aufzuz„hlen,
+die mir einfallen.
+
+[in Arbeit]
+
+
+ş Nachrichten von Hand einlesen
+
+Wenn das automatische Einlesen der Nachrichten nach dem Netzanruf nicht
+funktioniert hat, z.B. weil ein Spoolfile defekt ist, dann k”nnen Sie dies mit
+den folgenden Schritten von Hand vornehmen:
+
+o  Verlassen Sie CrossPoint.
+o  Geben Sie "UUZ -uz spool\m*.in 3ppuffer" fr Mails ein.
+o  Geben Sie "UUZ -uz spool\n*.in 3ppuffer" fr News ein.
+o  Starten Sie CrossPoint.
+o  Lesen Sie die Datei 3PPUFFER mit /XPoint/Import/Puffer ein.
+
+Beachten Sie, daá die nicht eingelesenen Nachrichten nur bis zum n„chsten
+Netzanruf im Verzeichnis SPOOL liegenbleiben. Sie mssen sie also unbedingt
+einlesen oder zumindest in ein anderes Verzeichnis kopieren, bevor Sie den
+n„chsten Netzanruf durchfhren.
+
+
+ş Nachrichtentest
+
+Wenn Sie testen m”chten, ob Ihre ”ffentlichen Nachrichten ankommen, k”nnen
+Sie eine Nachricht in eine der Testgruppen schreiben, z.B. in de.test. Sie
+erhalten dann automatisch Antwort von verschiedenen Programmen, deren einzige
+Aufgabe darin besteht, Antworten auf Testnachrichten zu verschicken. Seien
+Sie aber vorsichtig beim Schreiben in internationalen Testgruppen - dies
+ist der beste Weg, um Ihr Postfach mit hunderten von Kilobytes unntzer Mails
+zu fllen.
+
+Das Versenden von PMs testen Sie am besten, indem Sie Empfangsbest„tigungen
+anfordern (s. XPOINT.DOC, Kap. 5.9).
+
+
+
+
+2.3  Bestellen und Verwalten von Newsgroups
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Die Brett- bzw. die Verwaltung der Newsgroups im Usenet ist fr dem CrossPoint
+User in der RFC/PPP ein ziemlich einfaches Kapitel, im Gegensatz zu den in
+der Zwischenzeit fr „ltere CrossPoint-Versionen entstandenen L”sungen. In
+der RFC/PPP-Box k”nnen sie auf das interne und komfortable XP-Brettbestellsystem
+zurckgreifen k”nnen, das in Kapitel 3.2 von XPOINT.DOC beschrieben ist.
+
+ş Brett- bzw. Liste der Newsgroups einrichten
+
+Dieses ist recht einfach; aktivieren Sie einfach unter /Edit/Boxen/Nntp
+die Option "Newsliste_anfordern/aktualisieren". Beim n„chsten Netcall wird
+der PPP-Client automatisch eine Newsgroupliste anfordern und dem internen
+Brettmangager zur Verfgung stellen. Das bisher gewohnte "/Nachricht/Brettmanager/
+Liste_einlesen" entf„llt hierbei, da der PPP-Client diese Liste direkt erstellt.
+
+Neben den Newsgroup-Namen enth„lt die Liste noch diverse Steuerinformationen,
+die nicht weiter von Interesse sind. Nur auf das letzte Zeichen jeder Zeile
+sollten Sie achten: Steht dort "y", so haben Sie freien Zugriff auf die Gruppe;
+"m" dagegen bedeutet, daá sie moderiert ist.
+
+ş Liste der Newsgroups aktualisieren
+
+Das Aktualisieren der Newsgroups ist leider ein trauriges Artikel im Usenet,
+denn leider gibt es kein Verfahren um in der Zwischenzeit nicht mehr existierende
+Newsgroups zu erkennen. Das im NNTP-Protokoll definierte Verfahren l„át leider
+nur die Aktualisierung neuer Newsgroups zu, dieses wird bei Verwendung der
+Option "Newsliste_anfordern/aktualisieren" auch von CrossPoiunt verwendet.
+
+Um eine komplette und korrekte Newsliste zu beziehen, mssen Sie die Brettmanager
+Option "Brettmanager/Liste_anfordern" verwenden. Hierbei l”scht CrossPoint die
+lokale Brettliste komplett und fordert die Liste neu vom News-Server an.
+
+
+ş Newsgroups (ab)bestellen
+
+Siehe XPOINT.DOC, Kap. 3.2.
+
+
+ş Die .RC-Datei
+
+CrossPoint legt fr jeden News-Server eine Datei mit dem Namen <Server>.BBL an,
+in der sich eine Liste der gerade bestellten Newsgroups befindet. Nach jedem
+Netcall bzw. Bestellung oder Abbestellung von Newsgroups wird der Inhalt dieser Datei 
+aktualisiert. Wenn Sie m”chten, k”nnen Sie diese Datei auch von Hand bearbeiten,
+denn der Syntax der Datei ist recht einfach:
+
+z.B:
+de.comm.software.crosspoint 1234 hdronly
+
+An erster Position befindet sich der Name der Newsgroup, die Sie bestellt haben.
+Danach folgt der Artikelpointer, welcher ben”tigt wird um zu erkennen ob neue
+Artikel auf dem News-Server eingetroffen sind. Ein negativer Wert an dieser 
+Stelle, z.B. "-10", wrde bedeuten, das der Client beim n„chsten Netcall die
+10 letzten bzw. neuesten Artikel beziehen wird. Bei einem Wert von "0" wrden
+die x-letzten Artikel anhand der "maximale Artikel" Option bezogen werden.
+
+Bitte beachten Sie, das bei Rescan's eventuell nicht alle Artikel vom News-Server
+bezogen werden, da Artikel in der internen Dupebase vorhanden sein k”nnten.
+
+Die Option "hdronly" ist momentan noch nicht in CrossPoint implementiert. Sofern
+der Client es untersttzt, werden nur die Artikelheader vom News-Server geladen
+und in CrossPoint angezeigt.
+
+
+
+2.4  "Sysop-Mode" (Disk-Poll)
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Statt dem Verschicken von Nachrichtenpaketen per PPP bietet Ihnen CrossPoint
+auch die M”glichkeit, ausgehende Pakete auf der Festplatte abzulegen und
+eingehende Pakete von dort einzulesen. Dieses Verfahren ist z.B. dann
+ntzlich, wenn Sie selbst Betreiber eines PPP oder UUCP-Systems sind und
+CrossPoint nur als "Frontend" einsetzen m”chten. Zur Verwendung des Sysop-Modes
+von XP sollten Sie Kenntnisse ber die Benennung und den Aufbau von UUCP und RFC/PPP
+Nachrichtenpaketen haben. N„here Informationen dazu finden Sie in Kapitel 5.1.
+
+Zur Aktivierung des Sysop-Modes mssen Sie unter /Edit/Boxen/Edit/Point das
+gewnschte Ein- und Ausgangsverzeichnis eintragen. Im Eingangsverzeichnis
+erwartet XP News- und Mailpakete im RFC/PPP-Format. Die Dateinamen mssen
+den in Kapitel 5.1 beschriebenen Dateinamenkonventionen von XP entsprechen.
+
+Im Ausgangsverzeichnis legt XP alle ausgehenden Nachrichten in Form von M????.OUT
+(Mail) und N????.OUT (News) Dateien ab. 
+
+
+
+III  Arbeiten mit der RFC/PPP Box
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+Dieser Abschnitt beschreibt spezielle Features und Dienste von UUCP, Usenet
+und Internet, die XP in irgendeiner Weise untersttzt. Er wird in zuknftigen
+Versionen mit Sicherheit noch um einige Kapitel wachsen.
+
+
+
+
+3.1  Envelope-Adressierung
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Jede Mail, die durch das Usenet geschickt wird, besitzt nicht nur einen
+Absender und Empf„nger, sondern zwei von Jedem: die ursprnglichen Adressen
+und die sogenannten Envelope-Adressen. Bei einer neuen Mail, die ganz normal
+verschickt wird, merken Sie davon nichts - ursprngliche Adressen und Envelope
+sind identisch. Zum Tragen kommt die Envelope-Adressierung erst, wenn eine
+Nachricht weitergeleitet wird: Dann enth„lt der Envelope die neue Absender-
+und Empf„ngeradresse, w„hrend die Originaladressen unver„ndert bleiben.
+
+Nehmen wir z.B. an, gohel@basicguru.com schickt eine Nachricht an support@xp2.de, und
+der wiederum leitet die Nachricht an tg@xp2.de weiter. Dann kommt Sie beim letzten Empf„nger mit folgenden
+Adressen an:
+
+Originalempf„nger:  support@xp2.de
+Originalabsender:   gohel@basicguru.com
+Envelope-Absender:  support@xp2.de
+Envelope-Empf„nger: tg@xp2.de
+
+- Und was bedeutet das fr mich als CrossPoint-Anwender?
+
+Nun, es bedeutet, daá Sie bei solchermaáen weitergeleiteten Nachrichten
+(bei XP gibt es dazu brigens den Menpunkt /Nachricht/Weiterleiten/Original)
+folgendes angezeigt bekommen:
+
+Empf„nger:            hier steht der Envelope-Empf„nger
+Absender:             hier steht der Originalabsender
+Originalempf„nger:    hier steht der Originalempf„nger
+Weiterleit-Absender:  hier steht der Envelope-Absender
+
+Und es bedeutet, daá Sie beim Antworten auf diese Nachricht die Wahl zwischen
+drei Adressen haben: Absender, Weiterleit-Absender oder Originalempf„nger.
+
+Leider wird in der Regel, bei der Verwendung des Pop3-Verfahrens, der Envelope-Empf„nger
+(Envelope-To) nicht zum Empf„nger bertragen. Da aber rein technisch ein einzigster
+Pop3-Account nur eine Envelope-To besitzt, besteht in CrossPoint die M”glichkeit
+diese Envelope-To in der Pop3-Konfiguration einzutragen. 
+
+Einige Pop3-Server k”nnen aber derart konfiguriert werden, das sie den Envelope-
+Empf„nger in einem speziellen "Envelope-To:" Header bertragen k”nnen. CrossPoint
+kann diesen Header auswerten, indem Sie die Envelope-To Untersttzung in Ihrer
+Pop3-Konfiguration aktivieren.
+
+Sollte Ihr Pop3-Server keine Envelope-To bertragen, so besteht in einigen F„llen
+noch die M”glichkeit, die ursprngliche Envelope-To aus dem "Received"-Header zu
+ermitteln. Sie k”nnen dieses Feature mit der zus„tzlichen "-graberec" Option unter
+/Edit/Boxen/Edit/RFC|UUCP|PPP/Clients aktivieren. Bedenken Sie aber, diese Option ist 
+nicht immer zuverl„áig und sie h„ngt von der jeweiligen Konfiguration der bei der
+šbermittlung zust„ndigen Mail-Server ab.
+
+Sollten Ihnen die Zusammenh„nge der Envelope-Adressierung in CrossPoint nicht
+ganz klar sein, so kann ich Sie beruhigen: Bei der Einrichtung einer RFC/PPP-
+Box wird CrossPoint Ihnen in der Regel die korrekten Eintr„ge automatisch eintragen.
+
+
+
+
+3.2  Cancel-Nachrichten
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Ein nettes, wenn auch umstrittenes RFC-Feature sind die sogenannten Cancel-Nachrichten
+(to cancel = streichen, aufheben). Mit solchen Nachrichten k”nnen Sie einmal
+abgeschickte, ”ffentliche Nachrichten wieder l”schen. Dazu wird der betreffenden
+Nachricht eine L”schnachricht hinterhergeschickt, und berall, wo beide
+Nachrichten aufeinandertreffen, wird die Originalnachricht entfernt. B”se
+Zeitgenossen verwenden dieses Feature dazu, die Nachrichten anderer User zu
+l”schen. Mit CrossPoint ist dies natrlich nicht m”glich.
+
+Zum Versenden einer Cancel-Nachricht w„hlen Sie die zu l”schende Nachricht und
+dann den Menpunkt /Nachricht/Weiterleiten/L”schen. Generell sollten Sie
+sparsam mit dieser Funktion umgehen. Lesen Sie Ihre Nachrichten besser vor dem
+Absenden noch zweimal durch, statt nachher einen L”schversuch zu starten;
+dadurch belasten Sie das Netz nicht mit unn”tigen Daten, und Sie sind *ganz*
+sicher, daá die Nachricht nirgendwo gelesen wird - wesentlich sicherer als
+bei "gecancelten" Nachrichten.
+
+Mit /Edit/Schablonen/L”schnachricht k”nnen Sie den Text editieren, den XP
+in Cancel-Nachrichten schreibt. Was dort steht, ist v”llig egal; entscheidend
+fr das Funktionieren ist nur eine spezielle Steuerinformation, die von
+/Nachricht/Weiterleiten/L”schen automatisch erzeugt wird. Dies bedeutet auch,
+daá Cancel-Nachrichten *nur* mit diesem Menpunkt erzeugt werden k”nnen.
+
+Eingehende Cancel-Nachrichten werden von XP automatisch ausgewertet und
+bewirken, daá sowohl die Bezugsnachricht als auch die Cancel-Nachricht
+selbst auf "gelesen" und "l”schen" gesetzt und bei der n„chsten Reorganisation
+entfernt werden. Auáerdem kann auf die Bezugsnachricht nicht mehr geantwortet
+werden.
+
+
+Das einzige andere Netz, bei dem sich Nachrichten nachtr„glich l”schen lassen,
+ist brigens das MausNet. Allerdings funktioniert es dort nur, wenn die Nachricht
+sich noch innerhalb der Serverbox befindet; dadurch sind Manipulationen
+ausgeschlossen.
+
+
+
+
+3.3  Supersedes-Nachrichten
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Noch nicht implementiert.
+
+
+
+
+3.4  Teilnahme an Mailinglisten
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Das Konzept von Mailinglisten wurde ja bereits erkl„rt (falls Sie sich nicht
+mehr genau erinnern k”nnen: bl„ttern Sie einfach nochmal zurck zu Kap. 1.2).
+
+Nehmen wir einmal an, Sie wrden sich fr Tandem-Fahrr„der interessieren.
+Beim Durchlesen der Mailinglisten-šbersicht stellen Sie erfreut fest, daá
+es eine Tandem-Mailingliste gibt, und senden umgehend eine Nachricht an
+tandem-request@hobbes.ucsd.edu mit Bitte um Aufnahme. Einen Tag sp„ter
+bricht in Ihrem PM-Fach das Chaos aus: Wegen der groáen Anzahl von Tandem-Mails
+sind die wirklich an Sie gerichteten Mails kaum noch auszumachen.
+
+Was tun? Ganz einfach: Sie mssen sich nur unter einem anderen Usernamen bei
+der Mailingliste anmelden. XP kann beliebig viele PM-Bretter verwalten, und
+alle Nachrichten aus der Mailingliste wandern in ein eigenes Brett. ndern
+Sie also bei /Edit/Boxen/Edit/Namen Ihren Usernamen, z.B. in "tandem", senden
+Sie die Anforderung an die Mailingliste und tragen Sie anschlieáend wieder
+Ihren richtigen Namen ein.
+
+Es wird brigens empfohlen, beim Bestellen ("subscriben") einer Mailingliste
+noch einmal die vollst„ndige Adresse in den Nachrichtentext aufzunehmen, am
+besten in einer Signatur am Ende der Nachricht. Man weiá nie, wie die Absenderadresse
+aussieht, wenn die Nachricht auf dem Weg ber ein dutzend Stationen den
+Empf„nger erreicht hat...
+
+
+
+
+3.5  Dateitransfer per Mail
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Siehe Kapitel 3.5 der XPOINT.DOC.
+
+
+
+
+3.6  Dateiempfang per Mail
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+Siehe Kapitel 3.10 der XPOINT.DOC.
+
+IV   Mehrere Server und Mulithreading mit der RFC/PPP-Box
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+
+
+4.1   Pakete mitsenden
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+[in Arbeit]
+
+
+
+
+4.2   Zus„tzliche Mail-Server
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+CrossPoint erlaubt Ihnen auch die Verbindungen zu mehreren Pop3/Smtp Servern,
+welche hintereinander abgearbeitet werden. Dazu mssen Sie die Eintr„ge
+jeweils mit einem Leerzeichen (Space) getrennt in der jeweiligen RFC/PPP-Box
+RFC/PPP Box eintragen.
+
+Beispiel fr /Config/<Box>/POP3/:
+
+Server     : pop1.t-online.de pop2.t-online.de pop3.t-online.de
+User       : user1 user2 user3
+Passwort   : pass1 pass2 pass3
+Envelope   : test1@t-online.de test2@t-online.de test3@t-online.de
+Envelope-To: disabled disabled disabled
+Mail halten: disabled enabled disabled
+Spool      : D:\XP\T-ONLINE D:\XP\T-ONLINE D:\XP\T-ONLINE
+
+Bei vorhandenen Standardkonfigurationen wie Port/Spool/Timout wird entweder die 
+erste Eintragung bzw. der Defaulteintrag verwendet (sofern nicht ausdrcklich anders
+konfiguriert). Gleiches gilt ebenso fr die Envelope-Konfiguration.
+
+
+
+
+4.3   Mehrere News-Server 
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Multithreading allgemein
+
+Die bisher kompatiblen RFC/PPP-Clients fr CrossPoint untersttzten echtes 
+Multithreading in den Win32 und OS/2-Versionen. In den bisher vorliegenden 
+Version k”nnen Sie bis zu maximal acht News-Server gleichzeitig ansprechen.
+Um mehrere Threads zu starten, z.B. fr drei Threads, bergeben Sie die
+jeweiligen <Box>.BFG-Files wie folgt im Config/Boxen/<Box>/Clients-Men:
+
+    <News-Client> T-ONLIN1.BFG T-ONLINE2.BFG T-ONLINE3.BFG
+
+Es spielt dabei technisch keine Rolle, ob Sie 3x den selben News-Server
+kontakten oder ob es sich um drei verschiedene News-Server handelt.
+
+Es ist zu empfehlen, auch bei Verwendung eines einzigstens News-Servers den Poll
+in zwei Threads aufzuteilen, da somit Turnaround-Probleme (bedingt durch Systemlast 
+auf dem News-Server) besser ausgeglichen werden k”nnen. Wenn Sie z.B. einen
+Provider mit "Stac over PPP" Option benutzen, so k”nnen Sie durchaus 13000cps
+ber einen einzigsten ISDN B-Kanal erreichen.
+
+Des weiteren untersttzt die RFC/PPP-Box Sie gezielt bei Verwendungen von mehreren
+Threads auf einen einzelnen News-Server, mit folgenden Konfigurations-Optionen:
+
+    Newsliste aktualisieren      : enabled/disabled 
+                                   (konfigurieren Sie hier welcher 
+                                   Thread fr die 'new groups'
+                                   Liste zust„ndig ist).
+    Artikel ber diese Box posten: enabled/disabled 
+                                   (um das BFG-File zu bestimmen,
+                                   ber dessen Konfiguration die 
+                                   Artikel gepostet werden sollen)
+
+
+ş Newsgroups von mehreren Server beziehen
+
+Es ist mit CrossPoint technisch kein Problem eine Newsgroup ber mehrere News-Server
+zu beziehen, obwohl die Artikel-Pointer der jeweiligen News-Server unterschiedlich sind. 
+Sollten Sie gr”áere Mengen an News zwischen den verschiedenen News-Servern beziehen,
+bzw. die Zeitdifferenz ist recht groá, so mssen Sie eventuell den Wert fr "Dupebase" 
+entsprechend erh”hen.
+
+Hinweis: Sie ben”tigen dazu aber in jedem Fall getrennte BFG-Files!
+
+
+ş Newsgroups ber mehrere Server posten
+
+Im Gegensatz zum News-Bezug erfolgt das Posten Ihrer Artikel nicht per Multithreading,
+welches an dieser Stelle im brigen auch keinen Sinn ergeben wrde. Der Client arbeitet 
+die News-Server in der Reihenfolge der bergebenen BFG-Files ab. Es wird also zuerst 
+ein Versuch unternommen die Artikel zu dem News-Server des ersten BFG-File zu posten, 
+dann dem zweiten News-Server, usw.
+
+
+ş Ein paar kleine Spezialit„ten des News-Clienten
+
+   
+Mit "maximale Artikell„nge" kann die maximale Gr”áe eines Postings begrenzt werden.
+Damit k”nnen Sie sich vor Mailbomben/Binaries in den Newsgroups schtzen.
+
+Mit "maximale Anzahl der Artikel" kann die Anzahl der zu empfangenden Postings begrenzt
+werden. Es werden jeweils die x-neuesten Artikel empfangen.
+
+"Gr”áe der Dupebase" definiert die Gr”áe der Dupebase. In der Dupebase werden
+die Message-ID's der empfangenen und auch gesendeten Artikel gespeichert,
+sodas Sie keine CrossPostings (XP behandelt diese dann korrekt) oder auch
+ihre eigenen Artikel downloaden mssen. Bitte beachten Sie, das der Client
+bei Multithreading die jeweils gr”áte 'Dupesize' des jeweiligen BFG-Files
+global einsetzt.
+
+"Artikel gleichzeitig anfordern" beschleunigt den Download der Artikel vom News-Server. 
+Es werden bei dieser Implementierung die Turnaround-Zeiten des News-Servers optimal 
+eliminiert, das heiát: Im Buffer des News-Servers befinden sich z.B. zu jeder Zeit 5 
+Anfragen  zu den gewnschten Artikeln und der News-Server kann die Artikel direkt und 
+ohne zus„tzlichen Zeitverlust ausliefern. Momentan gltige Werte mssen sich
+im Bereich von 1-20 bewegen.
+
+
+
+V    Technische Dokumentation
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+In diesem Abschnitt finden Sie Dinge, die fr Normalanwender weniger von
+Interesse sind. Ich will versuchen, ein paar Informationen zu RFC und
+deren Implementation in XP zu geben. Falls Sie sich genauer informieren
+m”chten, empfehle ich die folgenden Dokumente:
+
+RFC-822 und 976:          Nachrichtenformat von Mails
+RFC-1036                  Nachrichtenformat von News
+RFC-1521 und 1522:        MIME-Erg„nzungen
+
+Die genannten und die meisten anderen RFC-Texte sollten bei jedem besseren
+Server verfgbar sein,
+
+
+
+
+5.1   RFC-Daten, Packer und der Nachrichten-Konvertierer UUZ
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ş Aufbau von RFC-Nachrichten
+
+RFC-Nachrichten bestehen aus einem Nachrichtenkopf (Header), einer Leerzeile
+und dem Nachrichteninhalt (Body), haben also den gleichen prinzipiellen Aufbau
+wie ZCONNECT-Nachrichten (s. XPOINT.DOC, Kap. 7.1). Die einzelnen Zeilen sind
+normalerweise nur mit LFs (ASCII #10) getrennt, aber gelegentlich kann es
+auch CR/LF (#13/#10) sein.
+
+Offiziell drfen in Header und Body nur 7bit-ASCII-Zeichen verwendet werden
+(#32 bis #126, Tab (#9), CR, LF und FF (#12)). In der Praxis sind die meisten
+Teile des Usenet inzwischen aber 8bit-durchl„ssig, zumindest in Europa, sodaá
+innerhalb des Textes auch nationale Sonderzeichen m”glich sind. Der in
+Deutschland verwendete Zeichensatz ist ISO-8859-1. Stattdessen k”nnen 8bit-Zeichen
+mit MIME auch als 7bit-Zeichen codiert werden; n„heres dazu finden Sie in RFC
+1341.
+
+Der Header besteht aus einer Liste von Bezeichner-Doppelpunkt-Whitespace-Inhalt-Kombinationen.
+Lange Headerzeilen k”nnen auf mehrere Zeilen aufgeteilt werden (sog. "folding");
+in diesem Fall mssen alle Zeilen auáer der ersten mit einem Whitespace
+(Leerzeichen oder Tab) beginnen. Der Empf„nger muá sie wieder zu einer Zeile
+zusammensetzen. Eine Beschreibung der einzelnen Zeilen entnehmen Sie bitte
+den genannten RFCs.
+
+
+ş Newspakete
+
+™ffentliche Nachrichten werden zu sogenannten News-Paketen zusammengepackt.
+Dazu wird jeder Nachricht die Zeile "#! rnews nnnn", gefolgt von einem LF,
+vorangestellt, wobei statt nnnn die exakte Gr”áe der Nachricht in Bytes
+einzusetzen ist. Bitte beachten Sie, daá dabei auch CR-Zeichen im Gegensatz
+zu der Angabe in RFC 1036 *mitgez„hlt* werden. Ein News-Paket besteht also
+aus einer Folge von rnews, Header, Body, rnews, Header, Body, ...
+
+
+
+ş Mailpakete
+
+Beim Mailtransport mit der RFC/PPP-Box wird per Default nur SMTP-Mail verwandt.
+Diese Methoden erlaubt es, zus„tzlich zu den Adressen im Header (To: = Empf„nger und
+From: = Absender) die Envelope-Adressen zu bertragen (s. Kap. 3.1).
+
+Bei SMTP-Mails werden mehrere Mails zu einem Mail-Paket zusammengefaát. Dabei
+wird jeder Mail der Envelope in Form der zwei Zeilen MAIl FROM und RCPT TO
+vorangestellt. Eine gute Beschreibung dieses Verfahrens finden Sie in RFC 976.
+
+Bitte beachten Sie, das in der RFC/PPP-Box nur SMTP-Mails in einem einzigstem
+File zusammen gefaát werden, sofern es sich um "Carbon Copies" oder "Blind
+Copies" handelt
+
+
+ş RFC/PPP: M- und N-Files
+
+CrossPoint generiert bzw. erwartet Spoolfiles in der folgenden Form in der
+RFC/PPP-Box:
+
+- Mail/Outgoing: M????.OUT
+                 Einzelne Mail im Batched-SMTP Format, CC/BCC's 
+                 werden in einem Spoolfile zusammengefaát.
+- Mail/Incoming: M????.MSG
+                 Einzelne Mail im Batched-SMTP Format.
+- News/Outgoing: N????.OUT
+                 Einzelnes Posting, ohne "rnews" Header
+- News/Incoming: N????.MSG
+                 Nachrichten-Paket mir "rnews"-Header (s. Kap. 4.1
+                 Newspakete)
+
+Nach der erfolgreichen Konvertierung der Mail & News-Pakete benennt CrossPoint
+alle eingetroffenen Pakete in "*.IN" um. Nicht versandte Mail & News werden wieder
+in CrossPoint als Unversandt einsortiert, danch werden die *.OUT Files gel”scht.
+
+
+
+ş Der Nachrichtenkonvertierer UUZ
+
+Alle eingehenden Mail & News-Pakete werden von dem Mail/News-Clienten im SPOOL-Unterverzeichnis
+abgelegt. Als n„chstes entpackt XP alle Mail- & News-Pakete und konvertiert 
+das Ganze anschlieáend mit UUZ in einen ZCONNECT-Puffer:
+
+  UUZ.EXE -uz SPOOL\*.MSG 3PPUFFER
+
+Sollte irgendwann bei einem Anruf mal etwas schiefgegangen sein, k”nnen Sie
+RFC-Daten auf diese Weise manuell konvertieren.
+
+Bitte beachten Sie, daá Sie fr die RFC/PPP-Box nur den bei der XP2 beiliegenden
+UUZ verwenden, da nur dieser optimal auf die RFC/PPP-Box abgestimmt ist. Die
+Verwendung „lterer UUZ-Versionen, oder UUZ-Versionen anderer Distributions-
+Pakete, kann zu Datenverlusten fhren! Eventuell k”nnen bei den PPP-Clients
+aktuellere Versionen fr die RFC/PPP-Box mitgeliefert werden, verwenden Sie
+bitte dann diese.
+
+
+
+
+5.2   Definition eigener RFC-Headerzeilen
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+CrossPoint sorgt in jedem Fall dafr, daá alle ausgehenden Nachrichten
+korrektes RFC-Format haben und alle notwendigen Headerzeilen enthalten.
+In einzelnen F„llen kann es jedoch sinnvoll sein, zus„tzliche Zeilen selbst
+zu definieren.
+
+ACHTUNG: Sie sollten nur dann eigene Header erzeugen, wenn Sie ganz genau
+wissen, was Sie tun! CrossPoint kann den Inhalt solcher Header nicht vollst„ndig
+auf Korrektheit berprfen. Es ist daher m”glich, daá fehlerhafte Nachrichten
+erzeugt werden.
+
+Wenn Sie eigene RFC-Headerzeilen in privaten Nachrichten erzeugen m”chten,
+legen Sie dazu im XP-Verzeichnis eine Datei mit dem Namen MAIL.RFC an, die
+die gewnschten Zeilen enth„lt. Der Nachrichtenkonvertierer UUZ kopiert den
+Inhalt dieser Datei dann in den Header aller ausgehenden Nachrichten.
+Eventuelle Leerzeilen werden ignoriert. Fr ”ffentliche Nachrichten erreichen
+Sie das gleiche mit der Datei NEWS.RFC. Zeilen, die in allen Nachrichten
+eingefgt werden sollen, mssen in MAIL.RFC und NEWS.RFC stehen.
+
+
+
+Anhang
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+
+
+A.  Glossar
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+--14Account       Benutzerkennung; Postfach bei einer Mailbox, auf einem
+Unix-Rechner o.„.
+
+Artikel       ”ffentliche Nachricht
+
+--14BCC           Blind Carbon Copy - Kopie einer Nachricht an weitere
+Empf„nger, die fr den Originalempf„nger nicht erkennbar ist
+
+--14Body          "Benutzerteil" einer Nachricht, im Gegensatz zum ^Header
+
+Bounce        Zurcksenden einer unzustellbaren Nachricht
+
+Cancel-       L”schnachricht zum nachtr„glichen L”schen einer ver-
+Message       schickten Nachricht
+
+--14CC            Carbon Copy - Kopie einer Nachricht an weitere Empf„nger
+
+--14CfV           Call for Vote - Aufruf zur Abstimmung, insbesondere zur
+Einrichtung einer neuen ^Newsgroup im ^Usenet
+
+--14Crossposting  ”ffentliche Nachricht in mehreren ^Newsgroups, die physikalisch
+nur einmal bertragen wird
+
+--14Domain        rechter Teil einer Internet-Adresse (s. Kap. 1.2); auch:
+organisatorischer Zusammenschluá einer Menge von Usenet-Sites, die eine
+bestimmte Adreádomain verwenden
+
+--14Expire        Haltezeitberschreitung von Nachrichten / Programm
+zum L”schen von Nachrichten, die die Haltezeit berschritten haben
+
+--14FAQ           Frequently Asked Questions - eine Sammlung von h„ufig
+gestellten Fragen und Antworten darauf zu einem bestimmten Thema. Im Usenet
+finden Sie FAQs zu allen Themen in der Gruppe news.answers.
+
+Followup      ”ffentliche Antwort auf eine ”ffentliche Nachricht
+
+--14FTP           File Transfer Protocol = Dateibertragungsprotokoll, das
+zum Dateitransfer im ^Internet eingesetzt wird
+
+Gateway       šbergang zwischen zwei Netzen
+
+--14Gopher        Internet-Programm/Verfahren/Standard zur Abfrage von
+Online-Datenbanken
+
+--14Header        der Teil einer Nachricht, der Steuerinformationen enth„lt
+
+--14Host          Rechner, insbesondere im ^Internet, der irgendwelche Dienste
+zur Verfgung stellt
+
+--14IN            Individual Network e.V. - Zusammenschluá von Privatpersonen
+in Deutschland, der Mail-, News- und Internetanbindung erm”glicht.
+
+--14Internet      schnelles, weltweites Online-Standleitungsnetz, das
+haupts„chlich von Firmen, Bildungseinrichtung und sonstigen Organisationen
+getragen wird
+
+--14IRC           Internet Relay Chat - weltweites Chatsystem (System zur
+Online-Textkommunikation per DFš) im Internet
+
+--14ISO           International Standardisation Organisation - internationales
+Normungsgremium. Speziell: ISO-8859-1 = im europ„ischen Internet blicher
+Zeichensatz.
+
+Mail          (Gesamtheit der) private(n) Nachricht(en)
+
+--14Mailer        Programm zum Lesen und Schreiben von Mails (im FidoNet:
+Programm zur šbertragung von Mails)
+
+--14Mailing-Liste  Nachrichtenverteiler fr ein bestimmtes Thema; quasi eine
+Newsgroup, die per Mail abgewickelt wird
+
+--14MIME          Multipurpose Internet Mail Extensions = Internet-Standard
+zur šbertragung von bin„ren Daten, internationalen Sonderzeichen, groáen
+Dateien und Multimedia-Daten
+
+News          (Gesamtheit der) ”ffentliche(n) Nachrichten
+
+Newsreader    Programm zum Lesen/Schreiben von ^News
+
+--14Newsgroup     Brett/Forum, in dem ”ffentliche Nachrichten ausgetauscht
+werden
+
+--14NNTP          Programm/Verfahren zur šbertragung von ^News im ^Internet
+
+--14PGP           Pretty Good Privacy - Programm zur Nachrichten-verschlsselung
+mit dem "RSA-Verfahren"
+
+--14POP3          Verfahren zur šbertragung von ^Mail im ^Internet
+
+Posting       (Versenden einer) ”ffentliche(n) Nachricht
+
+Postmaster    Ansprechpartner einer Usenet-Site bzw. einer Domain
+
+--14Realname      der Name im wirklichen Leben - im Gegensatz zum "Username"
+
+Rekursion     ^Rekursion
+
+--14RFC           Request for Comments - Internet-Standard-Spezifikation (es
+gibt bis jetzt ca. 1500 davon)
+
+--14RfD           Request for Discussion - Aufruf zur Diskussion, insbesondere
+zur Einrichtung einer neuen ^Newsgroup im ^Usenet
+
+Routing       Nachrichtentransport ber bestimmte Wege
+
+Sendmail      kompliziertes Unix-Programm zum ^Routing von ^Mail
+
+Site          System/Knoten/"Point" im ^Usenet
+
+--14SLIP          Serial Line Internet Protocol - Verfahren zur Teilnahme
+am Internet per Modem oder ISDN
+
+--14SMTP          Simple Mail Transfer Protocol - Programm/Verfahren zur
+šbertragung von ^Mail im ^Internet
+
+Smurf         Schlumpf
+
+--14Spooling      Bereitstellen versandfertiger Nachrichten/Dateien in einem
+bestimmten Festplattenverzeichnis
+
+Subject       Betreff einer Nachricht
+
+Sub-Netz      s. Kap. 1.1
+
+Summary       Zusammenfassung einer Nachricht
+
+Traffic       Nachrichtenaufkommen
+
+Usenet        Menge aller Systeme, die ^News austauschen
+
+uucico        Programm zur UUCP-Nachrichtenbertragung
+
+--14UUCP          Nachrichten-Transportverfahren und -programm im ^Usenet und
+in Sub-Netzen (s. Kap. 1.1)
+
+--14UUencode      Verfahren und Unix-Programm, mit dem bin„re Dateien im
+ASCII-Format codiert werden k”nnen, um sie per Mail zu bertragen.
+
+
+
+
+B.  CrossPoint/PPP - Versionsgeschichte
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+>>|
+3.3.005 (XP2 - ab April 2000)
++  erste ”ffentliche Beta mit RFC/PPP-Box
+
+3.3.006 (XP2 - Juli 2000)
++  kleinere Fixes
++  erster Versuch einer PPP.DOC
+<<|
+

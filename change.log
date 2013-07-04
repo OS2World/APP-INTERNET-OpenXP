@@ -1,0 +1,722 @@
+{ $Id: change.log,v 1.158 2002/04/17 21:35:25 rb Exp $ }
+-----------------------------------------------------------------------------
+                       C H A N G E L O G   X P 2
+-----------------------------------------------------------------------------
+
+17.04.2002 - Robert B”ck (robo@netsurf.de):
+             - Diverse Fixes im Bereich MIME-Dekodierung
+             - Dekodierung von nach RFC1522 kodierten Dateinamen bei
+               Attachments
+             - Weitere Zeichens„tze zur Dekodierung eingebaut:
+               - ISO-8859-15
+               - Windows-1252
+             - Betreff bei UUZ outgoing verl„ngert
+
+01.01.2002 - Maik Mueller (mm@xp2.de):
+             Neues:
+             - Automatisches Halten selbstgeschriebener PMs kann unter
+               Config/Optionen/Nachrichten/"Eigene PMs halten" konfiguriert
+               werden (Jochen Gehring)
+
+30.12.2001 - Maik Mueller (mm@xp2.de):
+             Neues:
+             - Archivierungsvermerk kann nun unter
+               Config/Optionen/Allgemeines/"Archivierungsvermerk erstellen"
+               abgeschaltet werden (Jochen Gehring)
+
+23.12.2001 - Maik Mueller (mm@xp2.de):
+             Neues:
+             - Rechtsklick/F10-Menue im Editor um die Punkte "Suchen",
+               "Ersetzen", "Weitersuchen" und "Beenden" ergaenzt (Jochen
+               Gehring)
+
+22.12.2001 - Maik Mueller (mm@xp2.de):
+             Neues:
+             - mittels Ctrl-W kann im Lister und Archiv-Viewer der automatische
+               Wortumbruch nicht-permanent umgeschaltet werden
+               (mit freundlichen Gruá und Dank an Michael Heydekamp)
+             Fixes:
+             - URLs welche "+" und "," enthalten werden korrekt erkannt und
+               nicht mehr vorzeitig abgeschnitten
+             - Suchen/Wiedervorlage durchsuchte keine Userbretter (Jochen
+               Gehring)
+
+11.09.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Zusammenfassung (RFC/PPP):
+             - Multiboxbetrieb erzeugt im BFG bei PPP_BoxPakete keine Boxnamen
+               mehr, sondern die echten BFG-Dateinamen (ohne Extension). Die
+               Clients sollten zukuenftig hier alle weiteren Parameter fr den
+               Multiboxbetrieb erwarten, und nicht mehr in der Kommandozeile
+             - Zwei neue Parameter: NntpFallback, SmtpFallback
+               Damit kann die Box uebergeben werden, bei der beim Misslingen
+               des Sendens an den urspruenglich geplanten Server fuer die
+               Uebergabe der Nachricht ein Ersatzserver verwendet wird. Im
+               Menue ist der Boxname einzutragen, im BFG wird der echte
+               BFG-Dateiname (o. Ext.) notiert
+             - Boxmenues nochmal ueberarbeitet
+             - Bugfix in Quoted Printable
+             - Fuer HDO wird beim Puffereinlesen ein Zaehler im Fenster
+               generiert, da man sonst bei sehr vielen HDOs den Eindruck
+               gewinnen koennte, dass der Vorgang haengt
+             - Bufix: Bei zu groáen bzw. unvollstaendigen Absender erfolgte
+               Absturz
+
+21.07.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes:
+             - Befindet sich XP in einem Verzeichnis, das einen Punkt enthaelt
+               (C:\XP2.330\TEMP), dann wurden die gesicherten BAK-Files im
+               TEMP-Verzeichnis nicht entfernt.
+
+15.07.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Neues (RFC/PPP):
+             - Beim Einlesen des Puffers wird die fuer die jeweilige Box (auch
+               im Multiboxbetrieb) gueltige Einstellung unter
+               Diverses/Vertretersysteme fuer den Fall beachtet, wenn
+               unbekannte User oder Bretter angelegt werden. Wurde kein
+               Vertretersystem angegeben, dann wird auch hier die Box genommen,
+               mit der diese Nachrichten eingeliefert wurden - Gruss an Michael
+               Heydekamp.
+             Fix:
+             - MailerShell ueberarbeitet und optimiert
+
+11.07.2001 - Torsten Jaehnigen (tj@xp2.de):
+             o Fix: in SHELL (range check error)
+             o Fix: Speicherallokierungsfehler behoben (OS/2 Screenroutinen)
+             o Kosmetik: in 32 Bit Versionen anstatt F9-DOS -> F9-Shell
+
+11.07.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Neues:
+             - Mit Gruss an Jochen: Umlaute ignorieren in der Suchoption
+               kann jetzt mit einem 'u' eingeleitet werden.
+             - Trennzeilen in der Nachrichtenuebersicht ueberspringen (JG)
+
+08.07.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Neues RFC/PPP:
+             - Sortierfunktion der Newsgroup-Listen ergaenzt:
+               Es werden in folgender Reihenfolge unterstuetzt:
+               1. RPSORT       (sehr schneller DOS-Sorter (ASM): Dank an MY)
+               2. GR-SORT      (aus dem UKAW-Paket - W32)
+               3. SORT.BAT     (erster Parameter = ausgewaehlte Liste)
+               4. SORT.CMD     (dito)
+               5. SORT-Befehl  (wird allgemein von jedem OS unterstuetzt)
+               (Tools und Batches werden im XP-Verzeichnis erwartet)
+             - Newsgroup-Listen mit Extention GR werden unterstuetzt
+             - Boxmenue ueberarbeitet - Pakete mitsenden deutlich ver-
+               einfacht (Clienteinstellung wird ueber Dialog angepasst)
+             - Dialog fuer Spoolvereichnisse im Clientmenue implementiert
+             Fixes:
+             - BretterAnlegen im SpezialMode mit Taste ^H
+
+06.07.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes:
+             - RFC/PPP: Das Aufklappen des Boxmenues konnte den unteren
+               Teil des Screens uebertreten, wodurch ein Menuepunkt nicht
+               mehr anwaehlbar war
+             - AutoDatumsBezuege: Dieser Schalter wurde entfernt und der
+               Bug um den UngelesenMode bezueglich des Netzanrufberichts
+               beseitigt - dadurch konnte die Prozedur beschleunigt werden
+             - Einige weitere Probleme bei den Lesemodies beseitigt
+             - Probleme (Doppelstart) beim Parameter /dd beseitigt
+             - Definierte QuoteTo-Schablonen beachten
+             Neues:
+             - RFC/PPP: Das Menue 'Liste sortieren' wurde nach 'Sonstiges'
+               verschoben und etwas erweitert: Es kann nun auch die Artikel-
+               anzahl, die bestellt werden soll, individuell an die aktive
+               Bestellung angepasst werden
+             - RFC/PPP: Das Boxmenue wurde mit weiteren mit der F2-Taste
+               erreichbaren Erleichterungen ergaenzt
+             - Mailinglistenkopf auschneiden: Wird einem Brett, in dem Nach-
+               richten aus einer Mailingliste empfangen werden, ein Kommentar
+               mit dem Namen, der in den Klammern jedem Betreff voran gestellt
+               wird, z.B.: "[XP-Dev] Alles wird gut", vergeben, dann wird diese
+               Klammer in Abhaengigkeit des schon bereits vorhandenen Schalters
+               im Betreff der Nachrichtenuebersicht entfernt
+             - Das TCP/IP-Menue erscheint (dynamisch) nur noch, wenn die Datei
+               TCP.BAT sich im XP-Verzeichnis befindet
+
+22.06.2001 - Martin Max Huckenbeck (max@xp2.de):
+             - Brettanzeigen bei UUCP und RFC/PPP RFC-Konform anzeigen
+
+22.06.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes:
+             - User, Betreff-, MsgID-Suche bei bereits aktiven
+               Sucheresultat verhindern -> kann zum GAU fuehren
+
+22.06.2001 - Maik Mueller (mm@xp2.de) [Jochen Gehring]:
+             o Fix: Eintraege 11-20 im Zusatzmenue funktionieren jetzt auch
+               wenn die ersten 10 Eintraege nicht komplett benutzt werden
+
+21.06.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Neues:
+             - Realnamen in der Nachrichtenuebersicht anzeigen, die
+               ueber Fidogates empfangen werden
+
+20.06.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Bugfixes:
+             - Ausstieg bei Betreffsuche in allen Brettern verhindern
+             - Anlegen von Geisterbrettern (RFC/PPP: #, $ im RC-File
+               ignorieren) verhindern
+             - Sharetest angepasst (W98-Problem)
+             - FileHandlePruefung gab keine Meldung zurueck
+             Neues:
+             - AmReplyTo bei Text- und Binaryfiles
+             - AmReplyTo beim versenden von Textfiles beachten (in der
+               v3.31.001 auch Binarys)
+
+19.06.2001 - Maik Mueller (mm@xp2.de) [Jochen Gehring]:
+             o Neu: Zusatzmenue auf 20 Eintraege erweitert
+
+18.06.2001 - Oliver Hertel (oh@xp2.de):
+             o GPG-Fixes (Idee von Malte Kiesel)
+
+11.06.2001 - Maik Mueller (mm@xp2.de):
+             o Fix: Laengenbegrenzung der Betreffzeile angehoben
+
+20.04.2001 - Martin Max Huckenbeck (max@xp2.de):
+             o Bugfix fuer mailto-linking:
+               Wurde versucht per F2 den Empfaenger zu aendern, konnte
+               dies zum Ausstieg fuehren
+
+10.04.2001 - Thomas Gohel (support@gohel.de):
+             o Mailer-Shell (verschiedene Zeilenanzahlen fuer CrossPoint und
+               den jeweils verwendeten PPP-Client
+             o DOS TCP/IP Konfiguration fuer Paketdriver (Modem bis ADSL)
+             o DOS TCP/IP Konfiguration fuer Dialer
+
+22.03.2001 - Oliver Hertel (oh@xp2.de):
+             o Farbprofile koennen unter verschiedemem Dateinamen geladen und
+               gespeichert werden.
+             o Temp-Dateien savepuf.fer, hdokill.now, netlog.tmp und ted.tmp
+               werden jetzt im Temp-Verzeichnis erstellt, nicht
+               mehr im XP-Hauptverzeichnis.
+
+21.03.2001 - Oliver Hertel (oh@xp2.de):
+             o Aufraeumarbeiten im Brettmanager: es werden keine
+               verwaisten TMP-Files mehr erstellt, ausserdem wird nicht
+               mehr die ganze Bestell-Liste verworfen, wenn auch nur
+               eine schon frueher bestellte Gruppe darunter war.
+
+18.03.2001 - Oliver Hertel (oh@xp2.de):
+             o Aktualisierung der Brettliste-Aenderungen im Brettmanager
+               drastisch beschleunigt.
+
+04.03.2001 - Martin Max Huckenbeck (max@xp2.de):
+             o Fix in der englischen Version bezueglich Reverse-Schalter
+               fuer HeaderOnly (englisch=Strg-H, deutsch=H)
+
+03.02.2001 - Martin Max Huckenbeck (max@xp2.de):
+             o RFC/PPP: Grenzen fuer Multiboxbetrieb korrigiert
+
+07.01.2001 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes:
+             o ArchivBretter
+
+31.12.2000 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes:
+             o Netzanrufbericht enthielt falsche Angaben bei FidoCrashs
+
+30.12.2000 - Martin Max Huckenbeck (max@xp2.de):
+             Fixes (Zusammenfassung der letzten Tage):
+             o dbBOF(ubase) Crash beim Hinzufuegen neuer User ueber
+               den F2-Dialog bei Neuinstallationen
+             o Sprachdialog z.B. bei Neuinstallationen, wenn keine
+               Resourcen existieren
+             o Verhalten in Nachrichten wenn PageDown/Up- und +/-
+               Tasten verwendet werden und zwischendurch der Header
+               mit der Taste <O> angesehen wird
+             o N/W/K/D incl. Verwendung von Kurznamen erzeugte in
+               oeffentlichen Brettern eine defekte Headerzeile, die
+               den Puffer unbrauchbar machen konnten
+             o Absturz bei 0 Byte grossen Nachrichcten in Verbindung
+               mit der Mausbedienung und feststehendem Nachrichtenkopf
+
+24.12.2000 - Martin Max Huckenbeck (max@xp2.de):
+             RFC/PPP Fixes:
+             o im Multiboxbetrieb wurden alte *.MSG-Dateien
+               vor dem Netcall nicht immer entfernt, und
+               konnten somit Dupes erzeugen
+             o bei mehreren Kopienempfaengern und Ablehnung durch den
+               Mail-Server gab es Probleme mit den Unversandt-Flags
+             RFC/PPP Neues:
+             o Reverse-Schalter ('H') fuer HeaderOnly:
+               (einfaches umschalten der HDO-Funktion eines Brettes)
+             Alle Netztypen Fixes:
+             o Archivierung von PMs (Alt+P)
+             o Netcall Anrufliste
+             o Fehlerhafte Betreffs (Box) im Netzanrufbericht
+             o ^Kw - F2 Clipboard-Funktion
+
+22.11.2000 - Maik Mueller (mm@xp2.de)
+             o Menuepunkt Edit/Glossary hinzugefuegt
+
+19.11.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Fix: hoffentlich letzten 'ungelesen' Bug beseitigt
+             o MsgID-Req: Stornierungen jeweils ermoeglicht
+             o --- " ---: Zusaetzlich neues Menue: Dort koennen
+               aenderungen vorgenommen werden
+             o Fixes: Userswitch ueberarbeitet, Vertreterfunktionen
+                      ergaenzt
+             o Nachtrag z. 018: Neues FQDN-Format hinzugefuegt:
+                      'nuemmerken.user@domain.tld'
+               - zusaetzlich gibt es im Boxmenue (nur RFC/PPP)
+                 einen Automat, der gueltige FQDNs fuer einige ISPs
+                 generieren kann
+
+10.11.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Kommentarbaum-Limits nochmals geaendert:
+               97 Ebenen, 3640 Nachrichten (auch 16 Bit Version!)
+             o Kommentarbaum arbeitet jetzt speicherschonender
+
+09.11.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Kommentarbaum-Limits geaendert:
+               65 Ebenen, 4680 Nachrichten
+             o Kommentarbaum ist mit Crtl und Cursor rechts/links verschiebbar
+
+03.11.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Automatische Sommer-/Winterzeitumstellung bei korrekt gesetzter
+               TZ-Umgebungsvariable
+
+02.11.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Kommentarbaum-Limits erhoeht:
+               49 Ebenen, 5460 Nachrichten
+
+14.10.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o UTF-7 Unterstuetzung fuer die Anzeige von Multipart-Nachrichten
+               sowie fuer UUZ incoming (Latin-1)
+
+           - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Followup-To (PM) kann im Sendefenster aktiviert werden
+
+13.10.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Fix: Darstellung der Uhr und des Hintergrundes
+               bei Auswahl zwischen User und Brett
+             o Fix: PM-Limits: Positionen korrigiert
+
+           - Robert Boeck (robo@munich.netsurf.de):
+             o Die Verarbeitung von Cancel- und Supersede-Nachrichten kann
+               jetzt stufenweise eingestellt werden
+
+           - Oliver Hertel (oh@xp2.de):
+             o 'Datumsbezuege anpassen' wird nur noch ausgefuehrt, wenn
+               auch was empfangen wurde.
+
+12.10.2000 - Oliver Hertel (oh@xp2.de):
+             o Neuer Schalter fuer PGP: nur noch beim ersten PGP-Aufruf
+               nach der Passphrase fragen und diese bis zum Programmende
+               merken
+             o Screenshot-Files verkleinert: Leerzeilen am Zeilenende werden
+               nicht mehr mitgespeichert
+
+           - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Nachtrag:
+             o Ruecklaeufer auf eigene Nachrichten koennen die in der
+               MsgBase befindlichen ersetzen:
+               - gilt fuer AM/PM
+               - Zu aktivieren: Im Boxmenue
+             o Boxmenue: Optische Korrekturen
+             o E-Mailadresse konnte sich ueber den Boxnamen bilden,
+               anstatt ueber die Domain (trat sehr selten auf)
+             o Sendefenster: Boxwechsel uebernimmt nun auch die eigene
+               jeweilige Vertreteradresse
+
+11.10.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o UTF-8 Unterstuetzung fuer die Anzeige von Multipart-Nachrichten
+
+10.10.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Supersedes-Support outgoing
+               - Autoversand
+               - Einzelnachrichten
+
+08.10.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o UUZ: UTF-8 Support fuer Latin-1, incoming
+
+07.10.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Message-ID Request auch im Menue 'Nachricht' erreichbar
+             o Anzahl der Versuche fuer HDO-Req.-Anforderungen kann unter
+               Config/Optionen/Netze eingestellt werden
+
+05.10.2000 - Robert Boeck (robo@munich.netsurf.de):
+             o Supersedes-Support incoming
+             o Bugfix bei Crosspost-Cancels
+
+01.10.2000 - Torsten Jaehnigen (tj@xp2.de):
+             o OS2: Systemfehlermeldung bei fehlendes Medium in Laufwerken
+               wird nun zum Teil unterbunden
+
+30.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o MID-Suche: Wenn erfolglos, kann per Dialog der Artikel
+               zur MID angefordert werden
+
+28.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             HdrOnly:
+             o Gibt es Markierte Nachrichten, erhaelt man einen Dialog, ob
+               diese Nachrichten bearbeitet werden sollen: Dieser kann mit
+               <Esc> auch abgebrochen werden (demnach kann nun doch wieder
+               mit Markierungen gearbeitet werden)
+             o Abbruchmechanismus ueberarbeitet: Bei Abbruch wird nicht mehr
+               demarkiert
+             o Neuer Filename: REQUEST.ID (gilt fuer Mail und News)
+             o Mail-Request hinzugefuegt: Holen und loeschen, holen und auf dem
+               Server belassen, vom Server entfernen
+
+           - Torsten Jaehnigen (tj@xp2.de):
+             o CTRL-P Problem unter OS/2 gefixt
+
+26.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o HDO: Nun ueber die Tasten: R, Shift+R zu erreichen
+             o HDO: Markieren der Nachrichten zur Beschleunigung und
+                    Anlehnung des CrossPoint-Designs ausgebaut; damit
+                    verhaelt sich die R-Taste wie z.B.: Halten, Loeschen
+
+24.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o HdrOnly- und MessageID-Request verwenden nun gleiche Formate
+             o F3: Mit einer Taste HdrOnly-Req. einleiten oder umkehren ohne
+                   Boxauswahl (Box wird aus dem jeweiligen Brett entnommen)
+             o HdrOnly-Req. ohne Markierung des aktuellen Artikels moeglich
+             o Shift+F3: Wie oben allerdings hier mit Boxauswahl
+             o HdrOnlyKill jetzt immer aktiv
+             o HDO-Request in Spezial-Suche hinzugefuegt
+
+22.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             HdrOnly:
+             o neues Format: NEWS.ID
+             o Eingeleiteter Request (F3) setzt ein 'R' vor die Nachricht
+             o Mit Alt+F3 kann ein Request rueckgaengig gemacht werden
+               (setzt dann wieder das 'H'-Flag vor die Nachricht)
+             o HeaderOnlyKill wird nun beim Puffer einlesen durchgefuehrt
+               (DEBUG_K.ILL-Datei muss sich im XP-Verzeichnis befinden)
+
+20.09.2000 - Frank Ellert (fe@koma.free.de)
+             o Kleine Anpassung an Gatebau '97: Fido-To wird nicht
+               mehr in der proprietaeren X-XP-FTO-Zeile, sondern in
+               der Standard-Zeile F-TO untergebracht. (X-XP-FTO wird
+               aber weiterhin verarbeitet.)
+             o Kleine Anpassung an Gatebau '97: Fido-To wird auch aus
+               und in RFC-Nachrichten konvertiert (X-Comment-To).
+             o Auch bei RFC wird bei oeffentlichen Antworten auf
+               Nachrichten mit Fido-To eine Fido-To-Zeile erzeugt
+               (Kleine Verbesserung fuer Leute, die mit RFC-Technik
+               in Fido-Foren schreiben.)
+
+12.09.2000 - Oliver Hertel (rom@xp2.de)
+             o Mailinglistenheader der Form [Listenname] koennen aus dem
+               Betreff ausgeblendet werden
+
+11.09.2000 - Oliver Hertel (rom@xp2.de)
+             o Re:, AW: etc. koennen aus dem Betreff ausgeblendet werden
+
+03.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Headeronly in der Spezialsuche hinzugefuegt
+             o Aenderung: Nachrichten-Anforderung von HeaderOnlys
+               nun per F3-Taste
+             o Wurde eine Anforderung dieser Nachrichten durchgefuehrt,
+               werden nach einem erfolgreichen Netcall die Headeronly-
+               Nachrichten gekillt: Derzeit zu aktivieren ueber eine
+               Semaphoredatei mit Namen: 'DEBUG_K.ILL' im CrossPoint-
+               Verzeichnis, ansonsten werden sie nur auf LOESCHEN ge-
+               setzt
+             o Nachrichten Ungelesen-Mode und Brett-Alle-Mode setzte
+               den Cursorbalken nicht sauber ins naechste Ungelesen-Brett
+
+02.09.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Headeronly Request vorbereitend implementiert:
+               Nachrichten markieren, Alt+F3, Box auswaehlen und
+               naechsten Netcall abwarten...fertig!
+             o Ganze Bretter koennen nun im Brettmanager Header only
+               bestellt werden
+             o Headeronly Nachrichten werden mit einem 'H'-Flag
+               in der Nachrichten-Uebersicht angezeigt
+
+29.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Message-ID Request nun per F3 erreichbar
+
+27.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Neu: Usersuche ueber F2 ermoeglichen im Sendefenster bei:
+                    Empfaenger aendern, Kopien an
+                    und beim weiterleiten von Nachrichten an User
+             o JG: Verteiler im Sendefenster erlaubt
+
+21.08.2000 - Oliver Hertel (rom@xp2.de)
+             o Fuer das Abspeichern mit W im Lister kann unter
+               Config/Optionen/Lister eine Default-Datei eingestellt werden.
+             o F3-Request, ist die automatische Magic-Erkennung abgeschaltet,
+               werden sie trotzdem erkannt, und zwar dann, wenn keine
+               normalen Dateinamen gefunden wurden. Irgendwas hat der
+               Anwender ja schliesslich markiert und finden wollen.
+
+15.08.2000 - Oliver Hertel (rom@xp2.de)
+             o Einschraenkung im F3-Request beseitigt (-. oder .- im Namen
+               hat den String als ungueltigen Dateinamen deklariert.
+
+13.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o RFC/PPP: Message-ID Request implementiert
+               Diese Funktion ist ueber das Clipboard-Menue
+               mit F2 zu erreichen. Zuvor eine ID in der
+               Nachricht markieren und ueber F2 dem Dialog
+               folgen.
+             o 'mailto:' Es wird nun auch der Subject ausgewertet
+
+12.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Bei RFC-Boxtypen koennen nun die Newsgrouplisten
+               alphabetisch sortiert werden (derzeit nur W>3.x)
+               GR-SORT.EXE aus dem UKAW-Paket wird benoetigt!
+
+11.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o RFC/PPP: Bestell-Liste wird nun fuer bestellte Bretter zur
+               besseren uebersicht mit einer Markierung versehen
+             o 'mailto:' als Parameter hinzugefuegt:
+               Damit kann nun ein Empfaenger an den Dialog 'Nachricht/Direkt'
+               uebergeben werden, welcher nach dem Start geoeffnet wird
+
+08.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fix: Absturz bei Volltextsuche, wenn mehr als 10 Suchbegriffe
+                  uebergeben wurden beseitigt
+             o Volltextsuche nun auch per ALT V im Editor verfuegbar
+
+06.08.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fixes [RFC/PPP]:
+             o Wenn ein UUZ-Error (outgoing) auftrat und keine Nachrichten
+               konvertiert werden konnten, wurden die entsprechenden Unver-
+               sandten Nachrichtenpuffer geloescht
+             o ArtikelRescan wird bei Erfolg nun auch zurueck gesetzt
+
+31.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Einstellung fuer MAILER-DAEMON nun fuer jede Box
+             separat konfigurierbar (Edit/Boxen/Name)
+             Neu: Maximale Groesse einer E-Mail kann konfiguriert
+             werden
+
+30.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             PGP fuer RFC nun ins PGP-Menue eingebaut
+
+29.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fix: Spezial/Edit+Hinzufuegen: Wird keine Box angegeben, wurde
+             man gefragt, ob ein 'internes' Brett angelegt werden soll, aber
+             ein 'normales' Brett angelegt
+             o PGP - RFC/PPP/UUCP: Nur wenn keine Bezuege vorhanden sind, wird
+               ein Key auf Anforderung versendet
+             o Bei Nachricht/Weiterleiten/Bestaetigen wird nun auch die
+               Schablone fuer EB angehaengt
+
+28.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o PGP fuer RFC/PPP vorbereitet
+             RFC/PPP/UUCP:
+             o PGP-Keys koennen angefordert und automatisch versendet werden:
+             Dazu muss PGP aktiviert werden: Einmal Global, wie ueblich, und
+             einmal derzeit noch per Handarbeit in XPOINT.CFG: PPP-PGP=J,
+             UUCP-PGP=J um das mal zu testen (beim ersten mal bitte PGP-
+             KEY.BIN loeschen, wird automatisch neu angelegt)
+
+27.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fix: Edit/Systeme: Es wurde die falsche Datenbank
+             zu frueh geschlossen
+             o Fileserver-Auswahl fuer RFC/PPP unterbunden
+             Neu (RFC/PPP):
+             o Hangupzeit kann nun eingestellt werden
+             o Einige Grenzen nach oben korrigiert
+
+26.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Fix: LIZENZ.DOC wurde im DOC-Verzeichnis gesucht
+             o Erweiterung der NNTP-Einstellung der Dupebase
+               auf 6 Stellen
+
+24.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fix: RTE 215 bei Netztypwechsel im Boxmenue beseitigt
+             Neu: Im Boxmenue werden nun die Bretter beim Netztyp-
+                  wechsel auch die jeweilige Gross-/Kleinschreibung
+                  beachten und konvertieren
+
+21.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Fixes: Weiterleiten/Empfaenger aendern
+             o Wurde einem Fidobrett ein Origin zugewiesen, wurde dieser als
+               Empfaenger eingetragen...
+             Neu:
+             o Server-Wechsel beachtet Klein-Grossschreibung fuer Bretter
+
+20.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de): Fixes:
+             Sendefenster 'Kopien an' schnitt erstes Zeichen der Vertreter-
+             adresse (pm) ab
+
+20.07.2000 - Robert Boeck (robo@munich.netsurf.de):
+             Editor: Glossary-Funktion (Alt-G)
+
+18.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de): Fixes:
+             o RFC/PPP: UUZ-Out schrieb in die Menuezeile
+             o Sendefenster: Bei Spezial/Zusatz/PM-Antworten wurde
+               nach einem Break in der Auswahl mit F2 eine Fehlermeldung
+               ausgegeben
+             o Sendefenster 'Empfaenger aendern': Brettvertreter wird
+               nun wie definiert uebernommen
+
+12.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Sendefenster 'Empfaenger aendern' beachtet nun ebenso
+               Schreibsperre und Brettvertreter des Zielbrettes
+
+09.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Weiterleitfunktionen beachten nun Schreibsperre
+               und Vertreteradressen
+
+08.07.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             o Updateroutine fuer den leichten Einstieg fuer Umsteiger
+             o Im Sendefenster 'Empfaenger aendern' kann nun in der
+               Erprobungsphase immer wahlweise das Brett oder der User
+               ausgewaehlt werden
+             o Mailerstring zur besseren Unterscheidung angepasst
+
+27.06.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de): RFC/PPP:
+             Nichtversendete Nachrichten bleiben auf Unversandt
+             und ein entsprechender Puffer wird rekonstruiert
+
+25.06.2000 - Oliver Hertel (oh@xp2.de):
+             o Ein paar Korrekturen in der Feldtauschroutine
+               sowie in der zugehoerigen OLH
+             o OLH zu PGP aktualisiert
+
+23.06.2000 - Thomas Gohel (gohel@basicguru.com):
+             o RFC/PPP: ein paar Kleinigkeiten ueberarbeitet
+             o Y2K-Fix in Autoversand-Datei
+             o Anzeige der Uhr im internen Lister nun im XP Look & Feel
+             o Default Fido-Aka neu gesetzt (XP Toolnet, Kannofant)
+
+21.06.2000 - Robert Boeck (robo@munich.netsurf.de):
+             UUZ: Unterstuetzung fuer Envelope-To: eingebaut. Wird -graberec
+             angegeben, hat Envelope-To: Vorrang.
+
+21.06.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             RFC/PPP: Pakete mitsenden implementiert
+             Vorsicht: TestImplementierung!
+
+13.06.2000 - Thomas Gohel (gohel@basicguru.com):
+             RFC/PPP Resource, Hilfe und Dokumentation ueberarbeitet:
+             o Sprachwechsel wieder aktiviert (xp4.inc, xp4o2.pas, xp2.pas).
+             o Sourcecode dokumentiert (xp0.pas).
+             o deutsche und englische Resource ueberarbeitet.
+             o deutsche Hilfe ueberarbeitet.
+             o RFC/PPP Menue's ueberarbeitet (xp9.pas).
+
+05.06.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             RFC/PPP BrettManagerFunktionalitaet hergestellt:
+             o Bretter (News) koennen aus der NewsListe bestellt
+               werden, diese werden z.Z. mit mit einem konstanten
+               Rescan von 10 Artikel ins BOX.RC eingetragen.
+             Spaeter kommt noch die Moeglichkeit, zum einen den
+             Rescan-Wert selbst zu bestimmen und zum anderen die
+             Gruppen in mehrere Threads (RCx-Files) aufzuteilen.
+             o Nicht vorhandene Bretter werden automatisch angelegt
+             o Bretter abbestellen; dazu wird das RC-File herangezogen
+
+02.06.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             RFC/PPP LoginTyp hergestellt:
+             Hiermit kann nun ein Netcall durchgefuehrt werden.
+             * Vorsicht! Die Clients geben noch keinen Errorlevel
+               zurueck, somit wird im Fehlerfall trotzdem der Puffer
+               gekillt und das Flag Unversand entfernt.
+             o In den Boxeeinstellungen koennen Makros verwendet werden
+               - $CONFIG: uebergibt dem News-, Mail-Client die korekte
+                          BFG-Datei (RCx-Dateien werden automatisch vom
+                          Client erkannt)
+               - $PUFFER: uebergibt UUZ den korekten Puffer
+             o Boxeinstellungen werden vor NetCall ueberprueft
+             o Netzanrufbericht wird erstellt
+
+25.05.2000 - Robert Boeck (robo@munich.netsurf.de):
+             xp3ex.pas: Bugfix fuers Quoten
+
+23.05.2000 - Torsten Jaehnigen (tj@xp2.de): XP2/2 schaltet nun auf die ur-
+             spruengliche Bildschirmzeilenanzahl zurueck, nach dem Beenden
+             von XP2/2. (z.B.: vor dem Start 50 Zeilen, nach dem Beenden
+             wieder die urspruenglichen 50 Zeilen)
+
+18.05.2000 - Robert Boeck (robo@munich.netsurf.de): UUZ erweitert:
+             o -AbsNSStyle gibts jetzt auch als Schalter (siehe 09.05.2000)
+             o neuer Schalter -ppp, dabei wird in Richtung ZtoU
+               o jedes Posting in eine eigene Datei gespoolt
+               o bei -SMTP jede Mail in eine eigene Datei gespoolt
+               o keine X- und C- Files erzeugt
+               o bei den Newsspoolfiles kein '#! rnews ...' davorgeschrieben
+               o News in N????.OUT geschrieben
+               o Mails in M????.OUT geschrieben
+               o *.OUT nicht ueberschrieben
+
+17.05.2000 - Oliver Hertel (oh@xp2.de): Bugfix in der Anzeige der
+             Nachrichtenliste (wurde beim Scrollen nicht aktualisiert);
+
+           - Torsten Jaehnigen (tj@xp2.de): "Zeilen" (25-50) einstellbar
+             unter OS/2, nur Bildschirmschoner loescht unter OS/2 nur
+             die ersten 25 Zeilen :);
+
+           - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de):
+             Neuen BoxenTyp (RFC/PPP) in erster Entstehungsphase
+             eingebaut. Mit diesem wird es zukuenftig moeglich sein,
+             ohne zu basteln mit UKAW (und anderen clients) am UseNet
+             teilzunehmen;
+
+           - Torsten Jaehnigen (tj@xp2.de): ZFdio laesst sich nun
+             unter VP 2.0 (OS/2) durchcompilieren;
+
+15.05.2000 - Torsten Jaehnigen (tj@xp2.de): Bildschirmroutinen fuer
+             OS/2 angepasst;
+
+10.05.2000 - Torsten Jaehnigen (tj@xp2.de): "Access violation" Bug
+             gefixt;
+
+09.05.2000 - Robert Boeck (robo@munich.netsurf.de): Testweise fuer UUZ:
+             wenn UUZ eine Datei absnssty.uuz findet, wird der Absender
+             (From:) im Netscape-Stil erzeugt,
+             also     Realname <abs@domain>
+             anstatt  abs@domain (Realname)
+
+           - Robert Boeck (robo@munich.netsurf.de): X-No-Archive, X-Proirity,
+             X-Homepage -> U-X-...
+
+           - Torsten Jaehnigen (tj@xp2.de): weitere OS/2 portierter
+             Source eingespielt;
+             OS/2 Bug: I/O Fehler 4 in XP.PAS provisorisch behoben;
+
+22.04.2000 - Martin Max Huckenbeck (m.m.huckenbeck@gmx.de): Farbliche
+             Hervorhebung fuer Nachrichten mit hohem Priority-Flag jetzt
+             im Farbsetup konfigurierbar
+
+19.04.2000 - Robert Boeck (robo@munich.netsurf.de): MIME-ISO-Decode-Bug
+             in UUZ gefixt
+
+15.04.2000 - Torsten Jaehnigen (tj@xp2.de): XP0.PAS -> benoetigte Strings
+             an XP2 angepasst
+
+13.04.2000 - Torsten Jaehnigen (tj@xp2.de): Einspielung von UART2.PAS
+             (MCOM.PAS) und VIDEO2.PAS als OS/2 eigende Versionen.
+             Der Source vom 13.04.2000 arbeitet noch nicht mit diesen
+             Unit's
+
+12.04.2000 - Torsten Jaehnigen (tj@xp2.de): Lizenzhinweise in Source-
+             codes angepasst
+
+           - Torsten Jaehnigen (tj@xp2.de): FILEIO.PAS -> noch einige OS/2
+             Portierungen eingepflanzt
+
+11.04.2000 - Oliver Hertel (oh@xp2.de): Updates von OpenXP uebernommen.
+
+           - Robert Boeck (robo@munich.netsurf.de): Code aufgeraeumt,
+             Dokumente angepasst, unnoetige Files geloescht
+
+           - Torsten Jaehnigen (tj@xp2.de): DOSX.PAS -> noch einige
+             OS/2 Portierungen eingepflanzt...
+
+10.04.2000 - Oliver Hertel (oh@xp2.de): Diverse Updates (Feldtausch-
+             Routine angepasst, Magics im F3-Request abschaltbar,
+             Umlaute im Subjekt werden evtl. konvertiert, Anpassungen
+             fuer VP/2-Kompilierung - teilweise uebernommen von OpenXP)
+             generelle Anpassung auf den OpenXP-Stand 10.04.2000
+
+09.04.2000 - Torsten Jaehnigen (tj@xp2.de): XP2-CVS mit OpenXP CVS Daten-
+             stamm abgeglichen (Source: 09.04.2000 12:00)
+             Ab hier wird nun der Sourcetree zwischen OpenXP und XP(/2)
+             getrennt
+
+31.03.2000 - Torsten Jaehnigen (tj@xp2.de): XP2-CVS mit OpenXP CVS Daten-
+             stamm abgeglichen (Source: 31.03.2000 00:30)
+
+30.03.2000 - Torsten Jaehnigen (tj@xp2.de): Datei Changelog angelegt
+
+29.03.2000 - Torsten Jaehnigen (tj@xp2.de): XP2-CVS mit OpenXP CVS Daten-
+             stamm abgeglichen

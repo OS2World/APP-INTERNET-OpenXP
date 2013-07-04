@@ -1,0 +1,54 @@
+
+ (german only, sorry)
+
+ -------------------------------------------------------------------
+   Zusatzinfos zur Portierung auf die OS/2 Plattform
+ -------------------------------------------------------------------
+
+ letzte Aenderung an diesem Dokument: 12.04.2001
+ letzter Autor                      : Torsten W. Jaehnigen
+
+ verwendeter Compiler:
+ ---------------------
+
+ nach Absprache mit den offiziellen Developer der OS/2 Plattform
+ sind wir uebereingekommen, die Portierung unter Virtual Pascal 2.0
+ (URL: http://www.vpascal.com/ ) zu entwickeln. SpeedPascal
+ bzw. Sybil von SpeedSoft sollte mit einigen kleinen Aenderungen auch
+ dazu ueberredet werden koennen, sich den Source anzunehmen. Das
+ gleiche gilt auch fuer andere Compiler wie FreePascal etc.
+
+
+ spezieller Newsserver zum Thema XP2:
+ ------------------------------------
+
+ der Newsserver hat die Mailinglisten zum Thema XP2 mehr oder
+ weniger abgeloest, da ein Newsserver den einen oder anderen 
+ Vorteil besitzt. Insbesondere das man aeltere Threads 
+ problemlos nachbestellen kann. Der Newsserver ist unter:
+ "news.kannofant.de" zu erreichen.
+
+
+ spezielle Mailingliste fuer OS/2 XP2 Developer:
+ -----------------------------------------------
+
+ die verwendete eMail Adresse lautet xp2@egroups.com,
+ zum Bestellen der Mailingliste muss eine eMail an
+ xp2-subscribe@egroups.com geschrieben werden, man
+ bekommt darauf hin eine eMail von egroups zurueck,
+ die dann alles weitere erklaert. Bitte Bemerkung 
+ unter Punkt "spezieller Newsserver..." beachten !
+
+
+ Fragen offen ?:
+ ---------------
+
+ Auf der Website http://www.xp2.de koennen weitere Informationen
+ entnohmen werden. Desweiteren existiert noch ein weiteres Team,
+ welches an die Weiterentwicklung und Portierung von Crosspoint
+ arbeiten, siehe http://www.openxp.de
+
+ Ansonsten eMail an einer der folgenden Adressen:
+
+ - verteiler@xp2.de
+ - Torsten.Jaehnigen@2:2433/1450

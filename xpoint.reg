@@ -1,0 +1,128 @@
+REGEDIT4
+;****************************************************************************
+;*                                                                          *
+;* UKAW Paket   : XPOINT.REG (CrossPoint Registry-File for Win32)           *
+;* Version      : 3.30.009                                                  *
+;* Copyright    : XP2-Team (basierend auf dem Registry-File von UKAW)       *
+;* Last Files at: http://www.xp2.de                                         *
+;*                                                                          *
+;* Bitte editiere die Pfadangaben entsprechend Ihrer CrossPoint v3.30       *
+;* Installation! Bitte beachte auch die doppelten "\\" in den Pfadangaben.  *
+;*                                                                          *
+;* Es wird in diesem Beispiel angenommen, das Sie auf Ihrem Windows-Desktop *
+;* bereits eine VerknÅpfung zu XP mit dem Namen "CrossPoint 3.30" angelegt  *
+;* haben und das CrossPoint im Verzeichnis "D:\XPOINT" installiert wurde.   *
+;*                                                                          *
+;****************************************************************************
+;
+; Hinweis: Sollten Sie nachtrÑglich énderungen an den einzelnen SchlÅsseln
+;          machen, dann ist es unter UmstÑnden nîtig unter:
+;
+;             "Start\Einstellungen\SystemSteuerung\Internet\Programme\*"
+;
+;          die CrossPoint-EintrÑge nochmals zu aktualisieren.
+;
+;          Erst-User mÅssen natÅrlich CrossPoint an dieser Stelle erstmal
+;          als Ihren Mail bzw. Newsreader aktivieren. ;-)
+;          
+;
+; Mail Parts
+; ----------
+;
+;
+; HinzufÅgen des CrossPoint-Eintrages fÅr:
+; Start\Einstellungen\SystemSteuerung\Internet\Programme\E-Mail
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint]
+@="CrossPoint v3.30"
+"DLLPath"="D:\\XPOINT\\XPICONS.DLL"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols\mailto]
+@="URL:MailTo Protocol"
+"EditFlags"=hex:02,00,00,00
+"URL Protocol"=""
+;
+; Aufruf von CrossPoint aus einer HTML-Seite per MailTo-Button
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols\mailto\DefaultIcon]
+@="D:\\XPOINT\\XPICONS.DLL,-1"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols\mailto\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols\mailto\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\Protocols\mailto\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\" /%1"
+;
+; Mit diesem Eintrag kînnen Sie CrossPoint mit dem IE unter den MenÅ's
+; 'Wechseln zu E-Mail' und 'E-Mail\E-Mail lesen' starten. In der XP2-
+; Konfiguration verweist der Link auf das allgemeine Pif-File fÅr den
+; Desktop.
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\Mail\CrossPoint\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\""
+;
+;
+; News-Parts
+; ----------
+;
+;
+; HinzufÅgen des CrossPoint-Eintrages fÅr:
+; Start\Einstellungen\SystemSteuerung\Internet\Programme\News
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint]
+@="CrossPoint v3.30"
+"DLLPath"="D:\\XPOINT\\XPICONS.DLL"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\news]
+@="URL:News Protocol"
+"EditFlags"=hex:02,00,00,00
+"URL Protocol"=""
+;
+; momentan ungeklÑrt
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\news\DefaultIcon]
+@="D:\\XPOINT\\XPICONS.DLL,-1"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\news\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\news\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\news\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\""
+;
+; momentan ungeklÑrt
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\snews]
+@="URL:Snews Protocol"
+"EditFlags"=hex:02,00,00,00
+"URL Protocol"=""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\snews\DefaultIcon]
+@="D:\\XPOINT\\XPICONS.DLL,-1"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\snews\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\snews\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\snews\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\""
+;
+; momentan ungeklÑrt
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\nntp]
+@="URL:NNTP Protocol"
+"EditFlags"=hex:02,00,00,00
+"URL Protocol"=""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\nntp\DefaultIcon]
+@="D:\\XPOINT\\XPICONS.DLL,-1"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\nntp\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\nntp\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\Protocols\nntp\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\""
+;
+; Mit diesem Eintrag kînnen Sie CrossPoint mit dem IE unter den MenÅ's
+; 'Wechseln zu News' und 'E-Mail\News lesen' starten. In der XP2-Konfiguration
+; verweist der Link auf das allgemeine Pif-File fÅr den Desktop
+;
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\shell]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\shell\open]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Clients\News\CrossPoint\shell\open\command]
+@="\"C:\\WINDOWS\\Desktop\\CrossPoint 3.30.pif\""
+;
+;---------------------------------------------------------------------------
+; (c) 1999/2000 by Thomas Gohel (XP2-Team)
+;---------------------------------------------------------------------------
+;[EOF]

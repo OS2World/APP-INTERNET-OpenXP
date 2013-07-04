@@ -1,0 +1,17 @@
+{ --------------------------------------------------------------- }
+{ Dieser Quelltext ist urheberrechtlich geschuetzt.               }
+{ (c) 1991-1999 Peter Mandrella                                   }
+{                                                                 }
+{ Aenderungen des XP2 Teams unterliegen urheberrechtlich          }
+{ dem XP2 Team, weitere Informationen unter: http://www.xp2.de    }
+{                                                                 }
+{ Basierend auf der Sourcebuild vom 09.04.2000 des OpenXP Teams.  }
+{ Aenderungen des Sources, die vom OpenXP Teams getaetigt wurden, }
+{ unterliegen den Rechten, die bis zum 09.04.2000 fuer das OpenXP }
+{ Team gueltig waren.                                             }
+{                                                                 }
+{ CrossPoint ist eine eingetragene Marke von Peter Mandrella.     }
+{                                                                 }
+{ Die Nutzungsbedingungen fuer diesen Quelltext finden Sie in der }
+{ Datei SLIZENZ.TXT oder auf www.crosspoint.de/srclicense.html.   }
+{ --------------------------------------------------------------- }
